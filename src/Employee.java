@@ -2,24 +2,19 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Employee {
+	private int ID;
+	private String name;
+	
 	protected double yearsWorked;
 	protected int sickDays;
 	protected int vacDays;
-	protected String name;
 	protected ArrayList<Date> paydays;
-	protected int ID;
 	protected double bonus;
+	protected EmployeeType employeeType;
 	
-	public double calcContribution() { // productivity metric
-		return 0.0;
-	}
-	
-	public double calcCompensation() { // dollar value
-		return 0.0;
-	}
-	
-	public double analyzeProductivity(double cont, double comp) { // based on contribution and compensation
-		return 0.0;
+	public Employee(String n, int id) {
+		name = n;
+		ID = id;
 	}
 	
 	public boolean equals(Employee e) {

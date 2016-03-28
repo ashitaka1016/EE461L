@@ -2,14 +2,14 @@
 public class Salary implements EmployeeType {
 
 	@Override
-	public double calcContribution() {
-		// TODO Auto-generated method stub
+	public double calcContribution(Employee e) {
+		Employee e1 = (SalaryEmployee) e;
 		return 0;
 	}
 
 	@Override
-	public double calcCompensation() {
-		// TODO Auto-generated method stub
+	public double calcCompensation(Employee e) {
+		Employee e1 = (SalaryEmployee) e;
 		return 0;
 	}
 

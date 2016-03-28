@@ -3,21 +3,21 @@ public class Hourly implements EmployeeType {
 
 	@Override
 	public double calcContribution(Employee e) {
-		Employee e1 = (HourlyEmployee) e;
+		HourlyEmployee e1 = (HourlyEmployee) e;
 		
 		return 0;
 	}
 
 	@Override
 	public double calcCompensation(Employee e) {
-		Employee e1 = (HourlyEmployee) e;
+		HourlyEmployee e1 = (HourlyEmployee) e;
 		
-		return 0;
+		return e1.getHours() * e1.getPayRate();
 	}
 
 	@Override
-	public double analyzeProductivity(double cont, double comp) {
-		// TODO Auto-generated method stub
+	public int analyzeProductivity(double cont, double comp) {
+		
 		return 0;
 	}
 

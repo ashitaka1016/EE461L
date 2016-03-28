@@ -1,21 +1,25 @@
 
 public class Salary implements EmployeeType {
 
-	@Override
 	public double calcContribution(Employee e) {
-		Employee e1 = (SalaryEmployee) e;
+		SalaryEmployee e1 = (SalaryEmployee) e;
+		
 		return 0;
 	}
 
-	@Override
 	public double calcCompensation(Employee e) {
-		Employee e1 = (SalaryEmployee) e;
-		return 0;
+		SalaryEmployee e1 = (SalaryEmployee) e;
+		double compensation = e1.getSalary();
+		
+		if(e1.getOvertime() > 0) {
+			compensation += (e1.getOvertimeRate() * e1.getOvertime());
+		}
+		
+		return compensation;
 	}
 
-	@Override
-	public double analyzeProductivity(double cont, double comp) {
-		// TODO Auto-generated method stub
+	public int analyzeProductivity(double cont, double comp) {
+		
 		return 0;
 	}
 

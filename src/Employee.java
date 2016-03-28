@@ -9,7 +9,7 @@ public abstract class Employee {
 	protected int sickDays;
 	protected int vacDays;
 	protected ArrayList<Date> paydays;
-	protected double bonus;
+	protected double bonus; // could take the form of a base salary for commission employees
 	protected EmployeeType employeeType;
 	
 	public Employee(String n, int id) {

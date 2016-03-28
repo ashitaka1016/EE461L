@@ -1,12 +1,36 @@
 
 public class CommissionEmployee extends Employee {
-	private int sales;
-	private double commRate;
+	private double sales; // in dollars
+	private int commRate; // in whole number from 1 to 100
+	private double previousYearSales;
+	private double maxSales; // record sales since being employed
 	
-	public CommissionEmployee(String name, int ID, double rate) {
+	public CommissionEmployee(String name, int ID, int rate) {
 		super(name, ID);
 		employeeType = new Commission();
 		sales = 0;
+		previousYearSales = 0;
+		maxSales = 0;
 		commRate = rate;
+	}
+	
+	public double getSales() {
+		return sales;
+	}
+	
+	public double getCommRate() {
+		return commRate * 0.01;
+	}
+	
+	public double getPrevYearSales() {
+		return previousYearSales;
+	}
+	
+	public double getMaxSales() {
+		return maxSales;
+	}
+	
+	public void setMaxSales(double s) {
+		maxSales = s;
 	}
 }

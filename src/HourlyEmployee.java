@@ -9,4 +9,12 @@ public class HourlyEmployee extends Employee {
 		hours = 0;
 	}
 	
+	public double getHours() {
+		return hours;
+	}
+	
+	public double getPayRate() {
+		return payRate;
+	}
+	
 }

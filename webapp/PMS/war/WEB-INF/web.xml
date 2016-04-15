@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns="http://java.sun.com/xml/ns/javaee"
-xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+ 
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
 	<servlet>
-		<servlet-name>PMS</servlet-name>
+		<servlet-name>pms</servlet-name>
 		<servlet-class>com.example.pms.PMSServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>PMS</servlet-name>
+		<servlet-name>pms</servlet-name>
 		<url-pattern>/pms</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>pms</servlet-name>
+		<url-pattern>/signup</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>pms.jsp</welcome-file>
 	</welcome-file-list>
+	<filter>
+        <filter-name>ObjectifyFilter</filter-name>
+        <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+        <filter-name>ObjectifyFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

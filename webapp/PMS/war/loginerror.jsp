@@ -28,6 +28,7 @@
         </div>
         <div class="row" style="margin-top:15px">
             <div class="col-md-3 pull-right" style="text-align:right">
+                <p><font color="red">Invalid username or password</font></p>
                 <p>New User? <a class="signin-link" href="/signup.jsp">Sign Up</a></p>
             </div>
         </div>

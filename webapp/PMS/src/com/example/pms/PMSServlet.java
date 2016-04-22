@@ -8,6 +8,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import com.googlecode.objectify.ObjectifyService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
@@ -42,6 +44,23 @@ public class PMSServlet extends HttpServlet {
         log.info("Retrieved " + ofy().load().type(HourlyEmployee.class).id(6).get().getName());
 		
 		resp.sendRedirect("/dashboard.jsp");
+	}
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+			List<Employer> employers = ofy().load().type(Employer.class).list();
+			boolean match = false;
+			
+			for(Employer e : employers) {
+				if(e.getUsername().equals(req.getParameter("username")) && e.getPassword().equals(req.getParameter("password"))) {
+					match = true;
+				}
+			}
+			
+			if(match) {
+				resp.sendRedirect("/dashboard.jsp");
+			}
+			
+			resp.sendRedirect("/loginerror.jsp");
 	}
 
 }

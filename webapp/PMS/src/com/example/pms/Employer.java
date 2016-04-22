@@ -30,4 +30,12 @@ public class Employer {
 	public boolean removeEmployee(Employee e) {
 		return employees.remove(e.getID());
 	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
 }

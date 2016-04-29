@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
-public class EditServlet extends HttpServlet {
+public class EditHourlyServlet extends HttpServlet {
 	static {
 		ObjectifyService.register(com.example.pms.Employer.class);
 		ObjectifyService.register(com.example.pms.Employee.class);
@@ -22,7 +22,7 @@ public class EditServlet extends HttpServlet {
 		ObjectifyService.register(com.example.pms.CommissionEmployee.class);
 	}
 	
-	private static final Logger log = Logger.getLogger(EditServlet.class.getName());
+	private static final Logger log = Logger.getLogger(EditHourlyServlet.class.getName());
 	  
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)

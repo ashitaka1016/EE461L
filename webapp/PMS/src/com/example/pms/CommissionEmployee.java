@@ -12,7 +12,6 @@ public class CommissionEmployee extends Employee {
 	
 	public CommissionEmployee(String name, long id) {
 		super(name, id);
-		employeeType = new Commission();
 		sales = 0;
 		previousYearSales = 0;
 		maxSales = 0;
@@ -61,6 +60,8 @@ public class CommissionEmployee extends Employee {
 			maxSales = this.sales;
 		}
 		
+		sales += bonus;
+		
 		return sales; // assumption that employee works purely off of commission
 	}
 	
@@ -79,5 +80,37 @@ public class CommissionEmployee extends Employee {
 		if(!(getMaxSales() == e.getMaxSales())) { return false; }
 		
 		return true;
+	}
+	
+	@Override
+	public double calcContribution() {
+		double difference = .3*(maxSales-sales) + .7*(previousYearSales-sales);
+		
+		if(sales == 0) {
+			return 0.5;
+		}
+		
+		return difference/sales;
+	}
+	
+	@Override
+	public int analyzeProductivity(double cont) { // from 1 to 5
+		if(cont < 0) {
+			return 5; // employee has exceeded previous year sales, greatly exceeded maximum sales, or both
+		}
+		
+		if(cont <= 0.05) {
+			return 4; // 
+		}
+		
+		if(cont <= 0.2) {
+			return 3; // "C" grade
+		}
+		
+		if(cont <= 0.35) {
+			return 2; // "D" grade
+		}
+		
+		return 1; // "F" grade
 	}
 }

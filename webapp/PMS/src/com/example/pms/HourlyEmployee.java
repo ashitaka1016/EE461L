@@ -17,7 +17,6 @@ public class HourlyEmployee extends Employee {
 		payRate = 0;
 		hours = 0;
 		expectedHours = 0;
-		employeeType = new Hourly();
 	}
 	
 	private HourlyEmployee() {}
@@ -65,5 +64,37 @@ public class HourlyEmployee extends Employee {
 		if(!(getExpectedHours() == e.getExpectedHours())) { return false; }
 		
 		return true;
+	}
+	
+	@Override
+	public double calcContribution() {
+		double workRatio = hours / expectedHours;
+		
+		if(((sickDays * 8) > (hours * 0.1)) && (workRatio < 1.25)) { // based on average 8 hour workday
+			return 0;
+		}
+		
+		return workRatio;
+	}
+	
+	@Override
+	public int analyzeProductivity(double cont) {
+		if(cont >= 1.25) {
+			return 5; // employee has worked at least 25% over expected work hours
+		}
+		
+		if(cont >= 1.10) {
+			return 4; // employee has worked at least 10% over expected work hours
+		}
+		
+		if(cont >= 1.00) {
+			return 3; // employee has worked as expected
+		}
+		
+		if(cont >= 0.85) {
+			return 2; // employee has worked at least 85% of expected work hours
+		}
+		
+		return 1; // employee has not met expectations whatsoever
 	}
 }

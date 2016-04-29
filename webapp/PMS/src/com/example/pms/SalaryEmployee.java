@@ -36,7 +36,6 @@ public class SalaryEmployee extends Employee {
 		salary = 0;
 		overtime = 0;
 		overtimeRate = 0;
-		employeeType = new Salary();
 	}
 	
 	private SalaryEmployee() {}
@@ -90,5 +89,33 @@ public class SalaryEmployee extends Employee {
 		if(!(getSickDaysTaken() == e.getSickDaysTaken())) { return false; }
 		
 		return true;
+	}
+	
+	@Override
+	public double calcContribution() {
+		double payPerDay = salary / (260 - vacDays);
+		
+		if((sickDaysTaken * payPerDay) > (0.03 * salary)) {
+			return -1.0;
+		}
+		
+		return overtime;
+	}
+	
+	@Override
+	public int analyzeProductivity(double cont) {
+		if(cont >= 36) {
+			return 5;
+		}
+		
+		if(cont >= 12) {
+			return 4;
+		}
+		
+		if(cont >= 0) {
+			return 3;
+		}
+		
+		return 2; // no "F" grades for salary employees
 	}
 }

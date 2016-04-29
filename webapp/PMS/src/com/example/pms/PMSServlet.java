@@ -9,6 +9,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 import com.googlecode.objectify.ObjectifyService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -36,9 +37,14 @@ public class PMSServlet extends HttpServlet {
         log.info(password);
         Employer employer = new Employer(name, username, password);
         
-        ofy().save().entity(employer).now();
-        log.info("Retrieved " + ofy().load().type(HourlyEmployee.class).id(6).get().getName());
-		
+        HourlyEmployee e = new HourlyEmployee("Bob", 10);
+        e.setHours(10);
+        e.setExpectedHours(10);
+        e.setPayRate(10);
+        e.setSickDays(0);
+        employer.addEmployee(e);
+        ofy().save().entities(employer, e).now();
+        
 		resp.sendRedirect("/dashboard.jsp");
 	}
 	

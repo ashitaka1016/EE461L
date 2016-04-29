@@ -23,6 +23,7 @@
                     Username: <input id="username" name="username" class="input_text" type="text" />
                     Password: <input id="password" name="password" class="input_text" type="password" />
                     <input type="submit" value="Login">
+                    <input type="hidden" name="employer"/>
                 </form>
             </div>
         </div>

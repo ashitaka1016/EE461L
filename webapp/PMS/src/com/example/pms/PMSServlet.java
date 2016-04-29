@@ -35,12 +35,8 @@ public class PMSServlet extends HttpServlet {
         String password = req.getParameter("password");
         log.info(password);
         Employer employer = new Employer(name, username, password);
-        Employee e = new HourlyEmployee("Steve", 5, 10);
-        Employee f = new HourlyEmployee("Mike", 6, 10);
-        employer.addEmployee(e);
-        log.info("ID is " + e.getID());
         
-        ofy().save().entities(employer, e, f).now();
+        ofy().save().entity(employer).now();
         log.info("Retrieved " + ofy().load().type(HourlyEmployee.class).id(6).get().getName());
 		
 		resp.sendRedirect("/dashboard.jsp");
@@ -49,14 +45,17 @@ public class PMSServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 			List<Employer> employers = ofy().load().type(Employer.class).list();
 			boolean match = false;
+			Employer e1 = null;
 			
 			for(Employer e : employers) {
 				if(e.getUsername().equals(req.getParameter("username")) && e.getPassword().equals(req.getParameter("password"))) {
 					match = true;
+					e1 = e;
 				}
 			}
 			
 			if(match) {
+				req.setAttribute("employer", e1.getUsername());
 				resp.sendRedirect("/dashboard.jsp");
 			}
 			

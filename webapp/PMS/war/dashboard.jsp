@@ -1,3 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.googlecode.objectify.*" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -29,14 +35,19 @@
 <body style="height: 451px">
 
 
-<form action ="dashboard.jsp" method="post">
+<form action ="dashboard.jsp">
 	<div>
-		<input height="38" name="Image1" src="HomButton.png" type="image" width="57">
+		<input height="38" name="Image1" src="images/HomeButton.png" type="image" width="57">
 	</div>
 </form>
 
+<% String name = (String) request.getSession().getAttribute("employer"); 
+	System.out.println(name);
+
+%>
+
 <p class="auto-style1">
-Welcome back... !</p>
+Welcome back, <% out.print(name); %>!</p>
 	<div class="auto-style4" style="width: 222px; height: 360px;">
 		<p class="auto-style6" style="width: 216px">Menu</p>
 		<hr class="auto-style3" style="width: 214px" />
@@ -48,7 +59,7 @@ Welcome back... !</p>
 			<p>Upcoming Payment Date: </p>
 		</div>
 				
-		<form action="demo_form.asp" method="post">
+		<form action="create.jsp">
 			<button name="CreateEmployeeBtn" style="height:20px;width:200px">Create Employee</button>
 		</form>
 		

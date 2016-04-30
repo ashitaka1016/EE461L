@@ -19,6 +19,19 @@
             <div class="col-md-12">
                <div><h1 style="text-align:center">Sign Up</h1></div>
             </div>
+            
+            <div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+            </div>
 
             <div class="">
                 <form action="/signup" method="post">

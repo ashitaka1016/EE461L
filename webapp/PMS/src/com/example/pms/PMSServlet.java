@@ -28,23 +28,20 @@ public class PMSServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		log.info("Got to doPost");
 		String name = req.getParameter("name");
-		log.info(name);
         String username = req.getParameter("username");
-        log.info(username);
         String password = req.getParameter("password");
-        log.info(password);
         Employer employer = new Employer(name, username, password);
         
-        HourlyEmployee e = new HourlyEmployee("Bob", 10);
+        /*HourlyEmployee e = new HourlyEmployee("Bob", 10);
         e.setHours(10);
         e.setExpectedHours(10);
         e.setPayRate(10);
         e.setSickDays(0);
-        employer.addEmployee(e);
-        ofy().save().entities(employer, e).now();
+        employer.addEmployee(e);*/
+        ofy().save().entities(employer).now();
         
+        req.getSession().setAttribute("employer", employer.getUsername());
 		resp.sendRedirect("/dashboard.jsp");
 	}
 	
@@ -61,7 +58,7 @@ public class PMSServlet extends HttpServlet {
 			}
 			
 			if(match) {
-				req.setAttribute("employer", e1.getUsername());
+				req.getSession().setAttribute("employer", e1.getUsername());
 				resp.sendRedirect("/dashboard.jsp");
 			}
 			

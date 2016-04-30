@@ -16,6 +16,7 @@
         <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+
     <div id="top" class="container">
         <div class="row" style="margin-top:15px">
             <div class="col-md-3 pull-right" style="text-align:right">
@@ -23,7 +24,6 @@
                     Username: <input id="username" name="username" class="input_text" type="text" />
                     Password: <input id="password" name="password" class="input_text" type="password" />
                     <input type="submit" value="Login">
-                    <input type="hidden" name="employer"/>
                 </form>
             </div>
         </div>

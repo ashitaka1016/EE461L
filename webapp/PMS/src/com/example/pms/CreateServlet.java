@@ -27,27 +27,44 @@ public class CreateServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		String name = req.getParameter("name");
+		String name = null;
+		long id = 0L;
+		String type = null;
 		
-		Long id = Long.parseLong(req.getParameter("id"));
-		
-		String type = req.getParameter("type");
+		try {
+			name = req.getParameter("name");
+			id = Long.parseLong(req.getParameter("id"));
+			type = req.getParameter("type");
+		} catch(NumberFormatException e) {
+			resp.sendRedirect("/createemployeeiderror.jsp");
+		}
 		
 		Employee e;
 		
-		if(type == "Salary") {
+		if(type.equals("Salary")) {
 			e = new SalaryEmployee(name, id);
-		} else if(type == "Hourly") {
+		} else if(type.equals("Hourly")) {
 			e = new HourlyEmployee(name, id);
 		} else {
 			e = new CommissionEmployee(name, id);
 		}
 		
-		Employer employer = ofy().load().type(Employer.class).id(req.getParameter("employer")).get();
+		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
+		
+		for(Employee e1 : employer.getEmployees()) {
+			if(e1.getID() == id) { resp.sendRedirect("/idexists.jsp"); } 
+		}
+		
 		employer.addEmployee(e);
 		
 		ofy().save().entity(e).now();
 		
-		
+		if(type.equals("Salary")) {
+			resp.sendRedirect("/createsalary.jsp");
+		} else if(type.equals("Hourly")) {
+			resp.sendRedirect("/createhourly.jsp");
+		} else {
+			resp.sendRedirect("/createcommission.jsp");
+		}
 	}
 }

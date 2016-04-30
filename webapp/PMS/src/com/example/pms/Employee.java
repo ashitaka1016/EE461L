@@ -3,9 +3,12 @@ package com.example.pms;
 
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Serialize;
 
 @Entity
 public abstract class Employee {
@@ -14,8 +17,7 @@ public abstract class Employee {
 	
 	protected double yearsWorked;
 	protected int sickDays;
-	ArrayList<Long> payDates;
-	ArrayList<Double> payAmounts;
+	@Serialize protected HashMap<Date, Double> pay;
 	protected double bonus = 0; // could take the form of a base salary for commission employees
 	
 	public void setID(long iD) {
@@ -34,9 +36,8 @@ public abstract class Employee {
 		this.sickDays = sickDays;
 	}
 
-	public void setPay(ArrayList<Long> dates, ArrayList<Double> amounts) {
-		this.payDates = dates;
-		this.payAmounts = amounts;
+	public void setPay(HashMap<Date, Double> map) {
+		pay = map;
 	}
 
 	public void setBonus(double bonus) {
@@ -48,8 +49,7 @@ public abstract class Employee {
 	public Employee(String n, long id) {
 		name = n;
 		ID = id;
-		payDates = new ArrayList<>();
-		payAmounts = new ArrayList<>();
+		pay = new HashMap<>();
 	}
 	
 	public boolean equals(Employee e) {
@@ -76,21 +76,16 @@ public abstract class Employee {
 		
 	}
 	
-	public void addPayday(Long l, Double d) {
-		payDates.add(l);
-		payAmounts.add(d);
+	public void addPayday(Date d, Double dou) {
+		pay.put(d, dou);
 	}
 	
 	public double getYearsWorked() {
 		return yearsWorked;
 	}
 
-	public ArrayList<Long> getPayDates() {
-		return payDates;
-	}
-	
-	public ArrayList<Double> getPayAmounts() {
-		return payAmounts;
+	public HashMap<Date, Double> getPay() {
+		return pay;
 	}
 
 	public double getBonus() {
@@ -105,11 +100,10 @@ public abstract class Employee {
 		Employee e = (Employee) o;
 		
 		if(!(getID() == e.getID())) { return false; }
-		if(!(getName() == e.getName())) { return false; }
+		if(!(getName().equals(e.getName()))) { return false; }
 		if(!(getYearsWorked() == e.getYearsWorked())) { return false; }
 		if(!(getSickDays() == e.getSickDays())) { return false; }
-		if(!(getPayDates().equals(e.getPayDates()))) { return false; }
-		if(!(getPayAmounts().equals(e.getPayAmounts()))) { return false; }
+		if(!(getPay().equals(e.getPay()))) { return false; }
 		if(!(getBonus() == e.getBonus())) { return false; }
 
 		return true;

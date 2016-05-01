@@ -29,7 +29,7 @@
 
 <body style="height: 451px">
 
-<form action ="dashboard.jsp" method="post">
+<form action ="dashboard.jsp">
 	<div>
 		<input height="38" name="Image1" src="images/HomeButton.png" type="image" width="57">
 	</div>
@@ -37,11 +37,11 @@
 
 <p class="auto-style1"><strong>Edit Hourly Employee</strong></p>
 
-<%	ObjectifyService.register(Employee.class);
-	Employee e = ObjectifyService.ofy().load().type(Employee.class).id((String)request.getSession().getAttribute("employee")).get();
+<%	
+	Employee e = (Employee)request.getSession().getAttribute("currentEmployee");
 %>
 
-<form action="/edit" method="post">
+<form action="/edithourly" method="post">
 
 <table style="width: 100%">
 	<tr>
@@ -70,12 +70,11 @@
 	</tr>
 </table>
 
-
 <div class="wrapper">
 	<button name="Create">Save</button>
 </div>
-</form>
 
+</form>
 
 </body>
 

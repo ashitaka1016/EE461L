@@ -21,6 +21,18 @@
 		<servlet-name>createCommission</servlet-name>
 		<servlet-class>com.example.pms.CreateCommissionServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>editCommission</servlet-name>
+		<servlet-class>com.example.pms.EditCommissionServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>editHourly</servlet-name>
+		<servlet-class>com.example.pms.EditHourlyServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>editSalary</servlet-name>
+		<servlet-class>com.example.pms.EditSalaryServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>pms</servlet-name>
@@ -49,6 +61,18 @@
 	<servlet-mapping>
 		<servlet-name>createCommission</servlet-name>
 		<url-pattern>/createcommission</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>editCommission</servlet-name>
+		<url-pattern>/editcommission</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>editHourly</servlet-name>
+		<url-pattern>/edithourly</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>editSalary</servlet-name>
+		<url-pattern>/editsalary</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>

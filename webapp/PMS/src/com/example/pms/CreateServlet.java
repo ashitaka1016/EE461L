@@ -41,7 +41,6 @@ public class CreateServlet extends HttpServlet {
 			return;
 		}
 		
-		System.out.println("oops");
 		Employee e;
 		
 		if(type.equals("Salary")) {
@@ -55,14 +54,11 @@ public class CreateServlet extends HttpServlet {
 		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
 		
 		for(Employee e1 : employer.getEmployees()) {
-			System.out.println(e1.getID());
 			if(id.equals(e1.getID())) { 
 				resp.sendRedirect("/idexists.jsp"); 
 				return;
 			} 
 		}
-		
-		System.out.println("oops!");
 		
 		ofy().delete().entity(employer).now();
 		

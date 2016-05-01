@@ -1,8 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.googlecode.objectify.*" %>
+<%@ page import="com.googlecode.objectify.ObjectifyService" %>
+
 <%@ page import="java.util.*" %>
 <%@ page import="com.example.pms.Employer" %>
 <%@ page import="com.example.pms.Employee" %>
+<%@ page import="com.example.pms.HourlyEmployee" %>
+<%@ page import="com.example.pms.SalaryEmployee" %>
+<%@ page import="com.example.pms.CommissionEmployee" %>
 
 <!DOCTYPE html>
 <html>
@@ -47,21 +52,22 @@
 	</tr>
 	<tr>
 	</tr>
-	<%  ObjectifyService.register(Employer.class);
-		Employer e = ObjectifyService.ofy().load().type(Employer.class).id((String)request.getSession().getAttribute("employer")).get();
-	ArrayList<Employee> employees = e.getEmployees();
+	<%  
+		ObjectifyService.register(Employer.class);
+		Employer employer = (Employer)ObjectifyService.ofy().load().type(Employer.class).id((String)request.getSession().getAttribute("employer")).get();
+	ArrayList<Employee> employees = employer.getEmployees();
 	int size = employees.size();
-	for(int i = 0; i < size; i++){
+	for(int i = 0; i < size; i++) {
 		%>
 		<tr>
 			<td><% out.print(employees.get(i).getName()); %></td>
 			<td><% out.print(employees.get(i).getID()); %></td>
-			<td><% if(employees.get(i) instanceof HourlyEmployee){
-				%> <form action="edithourlyemployee.jsp" method="post">select</form> <%
-			}else if(employees.get(i) instanceof SalaryEmployee){
-				%> <form action="editsalaryemployee.jsp" method="post">select</form> <%
-			}else if(employees.get(i) instanceof CommissionEmployee){
-				%> <form action="editcommissionemployee.jsp" method="post">select</form> <%
+			<td><% if(employees.get(i) instanceof HourlyEmployee) {
+				%> <form action="edithourlyemployee.jsp"><input type="button" value="Select"></form> <%
+			} else if(employees.get(i) instanceof SalaryEmployee) {
+				%> <form action="editsalaryemployee.jsp"><input type="button" value="Select"></form> <%
+			} else {
+				%> <form action="editcommissionemployee.jsp"><input type="button" value="Select"></form> <%
 			} %>
 			</td>
 		</tr> <%
@@ -69,9 +75,6 @@
 	%>
 	
 </table>
-
-
-
 
 </body>
 

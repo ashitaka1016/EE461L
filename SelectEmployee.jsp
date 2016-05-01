@@ -56,15 +56,10 @@
 			<td><% employees.get(i).getName(); %></td>
 			<td><% employees.get(i).getID(); %></td>
 			<td>< edit ></td>
-		</tr>
+		</tr> <%
 	}
 	%>
 	
-	<tr>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
 </table>
 
 

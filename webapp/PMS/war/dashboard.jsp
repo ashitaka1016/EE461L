@@ -71,7 +71,7 @@ Welcome back, <% out.print(name); %>!</p>
 			<button name="CreateEmployeeBtn" style="height:20px;width:200px">Create Employee</button>
 		</form>
 		
-		<form action="demo_form.asp" method="post">
+		<form action="selectemployee.jsp" method="post">
 			<button name="EditEmployeeInfoBtn" style="height:20px;width:200px">Edit Employee Info</button>
 		</form>
 

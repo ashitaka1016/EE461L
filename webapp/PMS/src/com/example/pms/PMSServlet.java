@@ -33,12 +33,6 @@ public class PMSServlet extends HttpServlet {
         String password = req.getParameter("password");
         Employer employer = new Employer(name, username, password);
         
-        /*HourlyEmployee e = new HourlyEmployee("Bob", 10);
-        e.setHours(10);
-        e.setExpectedHours(10);
-        e.setPayRate(10);
-        e.setSickDays(0);
-        employer.addEmployee(e);*/
         ofy().save().entities(employer).now();
         
         req.getSession().setAttribute("currentEmployee", null);

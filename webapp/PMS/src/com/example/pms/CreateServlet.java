@@ -99,6 +99,6 @@ public class CreateServlet extends HttpServlet {
 			}
 		}
 		
-		resp.sendRedirect("dashboarderror.jsp");
+		resp.sendRedirect("/dashboarderror.jsp");
 	}
 }

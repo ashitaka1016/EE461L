@@ -46,9 +46,13 @@ public class CreateSalaryServlet extends HttpServlet {
 			bonus = Double.parseDouble(req.getParameter("bonus"));
 		} catch(NumberFormatException e) {
 			resp.sendRedirect("/createsalaryerror.jsp");
+			return;
 		}
 		
-		if((salary == null) || (overtime == null) || (overtimeRate == null) || (vacDays == null) || (sickDaysTaken == null) || (sickDays == null) || (yearsWorked == null) || (bonus == null)) { resp.sendRedirect("/createsalaryerror.jsp"); }
+		if((salary == null) || (overtime == null) || (overtimeRate == null) || (vacDays == null) || (sickDaysTaken == null) || (sickDays == null) || (yearsWorked == null) || (bonus == null)) { 
+			resp.sendRedirect("/createsalaryerror.jsp");
+			return;
+		}
 		
 		SalaryEmployee e = (SalaryEmployee) req.getSession().getAttribute("currentEmployee");
 		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();

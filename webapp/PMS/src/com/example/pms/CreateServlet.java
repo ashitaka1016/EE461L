@@ -38,8 +38,10 @@ public class CreateServlet extends HttpServlet {
 			type = req.getParameter("type");
 		} catch(NumberFormatException e) {
 			resp.sendRedirect("/createemployeeiderror.jsp");
+			return;
 		}
 		
+		System.out.println("oops");
 		Employee e;
 		
 		if(type.equals("Salary")) {
@@ -54,8 +56,13 @@ public class CreateServlet extends HttpServlet {
 		
 		for(Employee e1 : employer.getEmployees()) {
 			System.out.println(e1.getID());
-			if(id.equals(e1.getID())) { resp.sendRedirect("/idexists.jsp"); } 
+			if(id.equals(e1.getID())) { 
+				resp.sendRedirect("/idexists.jsp"); 
+				return;
+			} 
 		}
+		
+		System.out.println("oops!");
 		
 		ofy().delete().entity(employer).now();
 		

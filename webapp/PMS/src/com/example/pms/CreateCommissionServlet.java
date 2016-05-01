@@ -44,9 +44,13 @@ public class CreateCommissionServlet extends HttpServlet {
 			bonus = Double.parseDouble(req.getParameter("bonus"));
 		} catch(NumberFormatException e) {
 			resp.sendRedirect("/createcommissionerror.jsp");
+			return;
 		}
 		
-		if((sales == null) || (commRate == null) || (prevYearSales == null) || (sickDays == null) || (yearsWorked == null) || (bonus == null)) { resp.sendRedirect("/createcommissionerror.jsp"); }
+		if((sales == null) || (commRate == null) || (prevYearSales == null) || (maxSales == null) || (sickDays == null) || (yearsWorked == null) || (bonus == null)) { 
+			resp.sendRedirect("/createcommissionerror.jsp");
+			return;
+		}
 		
 		CommissionEmployee e = (CommissionEmployee) req.getSession().getAttribute("currentEmployee");
 		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();

@@ -15,11 +15,9 @@
 	text-align: center;
 	font-size: x-large;
 }
-
 .wrapper {
     text-align: center;
 }
-
 .Create {
     position: absolute;
     top: 50%;
@@ -30,7 +28,7 @@
 
 <body style="height: 451px">
 
-<form action ="dashboard.jsp" method="post">
+<form action ="dashboard.jsp">
 	<div>
 		<input height="38" name="Image1" src="images/HomeButton.png" type="image" width="57">
 	</div>
@@ -58,7 +56,14 @@
 		<tr>
 			<td><% out.print(employees.get(i).getName()); %></td>
 			<td><% out.print(employees.get(i).getID()); %></td>
-			<td>edit</td>
+			<td><% if(employees.get(i) instanceof HourlyEmployee){
+				%> <form action="edithourlyemployee.jsp" method="post">select</form> <%
+			}else if(employees.get(i) instanceof SalaryEmployee){
+				%> <form action="editsalaryemployee.jsp" method="post">select</form> <%
+			}else if(employees.get(i) instanceof CommissionEmployee){
+				%> <form action="editcommissionemployee.jsp" method="post">select</form> <%
+			} %>
+			</td>
 		</tr> <%
 	}
 	%>

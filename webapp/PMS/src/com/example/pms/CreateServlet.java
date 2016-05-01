@@ -80,4 +80,17 @@ public class CreateServlet extends HttpServlet {
 			resp.sendRedirect("/createcommission.jsp");
 		}
 	}
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		Long id = 0L;
+		
+		try {
+			id = Long.parseLong(req.getParameter("EmployeeSearch"));
+		} catch(NumberFormatException e) {
+			resp.sendRedirect("/dashboarderror.jsp");
+		}
+		
+		
+	}
 }

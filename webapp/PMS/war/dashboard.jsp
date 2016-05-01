@@ -87,8 +87,9 @@ Welcome back, <% out.print(name); %>!</p>
 	</div>
 	
 	<div id="layer2" style="position: absolute; width: 206px; height: 22px; z-index: 2; left: 250px; top: 98px">
-		<form method="post">
-			<input name="EmployeeSearch" style="width: 194px" type="text" value="Enter Employee Name" /></form>
+		<form action="/create" method="get">
+			<input name="EmployeeSearch" style="width: 194px" type="text" value="Enter Employee ID" />
+		</form>
 	</div>
 
 </body>

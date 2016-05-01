@@ -37,8 +37,8 @@
 
 <p class="auto-style1"><strong>Summary for Commission Employee</strong></p>
 
-<%	ObjectifyService.register(Employee.class);
-	Employee e = ObjectifyService.ofy().load().type(Employee.class).id((String)request.getSession().getAttribute("employee")).get();
+<%	
+	Employee e = (Employee)request.getSession().getAttribute("currentEmployee");
 %>
 
 <table style="width: 100%">

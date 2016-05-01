@@ -3,8 +3,7 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>CreateHourly</title>
-
+<title>CreateCommission</title>
 <style type="text/css">
 .auto-style1 {
 	text-align: center;
@@ -25,29 +24,32 @@
 
 <body style="height: 451px">
 
-<form action ="dashboard.jsp">
+<form action ="dashboard.jsp" method="post">
 	<div>
 		<input height="38" name="Image1" src="images/HomeButton.png" type="image" width="57">
 	</div>
 </form>
 
-<p class="auto-style1"><strong>Hourly Employee</strong></p>
+<p class="auto-style1"><strong>Commission Employee</strong></p>
 
-
-<form action="/createhourly" method="post">
+<form action="/createcommission" method="post">
 
 	<table style="width: 100%">
 		<tr>
-			<td style="width: 432px">Expected Hours: </td>
-			<td><input name="expectedHours" style="width:100%" type="text" /></td>
+			<td style="width: 432px">Sales (in dollars): </td>
+			<td><input name="sales" style="width:100%" type="text" /></td>
 		</tr>
 		<tr>
-			<td style="width: 432px">Hours Worked: </td>
-			<td><input name="hours" style="width:100%" type="text" /></td>
+			<td style="width: 432px">Commission Rate (as percent): </td>
+			<td><input name="commissionRate" style="width:100%" type="text" /></td>
 		</tr>
 		<tr>
-			<td style="width: 432px">Pay Rate (per hour): </td>
-			<td><input name="payRate" style="width:100%" type="text" /></td>
+			<td style="width: 432px">Previous Years Sales: </td>
+			<td><input name="previousYearSales" style="width:100%" type="text" /></td>
+		</tr>
+		<tr>
+			<td style="width: 432px">Max Sales: </td>
+			<td><input name="maxSales" style="width:100%" type="text" /></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Years Worked: </td>
@@ -64,10 +66,13 @@
 	</table>
 
 	<div class="wrapper">
-		<button name="create">Create</button>
+		<button name="Create">Create</button>
 	</div>
 
 </form>
+
+<div><p><font color="red">Invalid Input Detected. 
+	<br>Please check fields.</font></p></div>
 
 </body>
 

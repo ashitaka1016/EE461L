@@ -32,7 +32,7 @@
 
 <p class="auto-style1"><strong>Commission Employee</strong></p>
 
-<form method="post">
+<form action="/createcommission" method="post">
 
 	<table style="width: 100%">
 		<tr>
@@ -45,7 +45,7 @@
 		</tr>
 		<tr>
 			<td style="width: 432px">Previous Years Sales: </td>
-			<td><input name="previousYearsSales" style="width:100%" type="text" /></td>
+			<td><input name="previousYearSales" style="width:100%" type="text" /></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Max Sales: </td>
@@ -58,14 +58,6 @@
 		<tr>
 			<td style="width: 432px">Sick Days: </td>
 			<td><input name="sickDays" style="width:100%" type="text" /></td>
-		</tr>
-		<tr>
-			<td style="width: 432px">Sick Days Taken: </td>
-			<td><input name="sickDaysTaken" style="width:100%" type="text" /></td>
-		</tr>
-		<tr>
-			<td style="width: 432px">Vacation Days: </td>
-			<td><input name="vacationDays" style="width:100%" type="text" /></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Bonus: </td>

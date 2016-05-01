@@ -26,6 +26,42 @@ public class CreateHourlyServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		Double hours = 0.;
+		Double expectedHours = 0.;
+		Double payRate = 0.;
+		Integer sickDays = 0;
+		Integer yearsWorked = 0;
+		Double bonus = 0.;
 		
+		try {
+			hours = Double.parseDouble(req.getParameter("hours"));
+			expectedHours = Double.parseDouble(req.getParameter("expectedHours"));
+			payRate = Double.parseDouble(req.getParameter("payRate"));
+			sickDays = Integer.parseInt(req.getParameter("sickDays"));
+			yearsWorked = Integer.parseInt(req.getParameter("yearsWorked"));
+			bonus = Double.parseDouble(req.getParameter("bonus"));
+		} catch(NumberFormatException e) {
+			resp.sendRedirect("/createhourlyerror.jsp");
+		}
+		
+		if((hours == null) || (expectedHours == null) || (payRate == null) || (sickDays == null) || (yearsWorked == null) || (bonus == null)) { resp.sendRedirect("/createhourlyerror.jsp"); }
+		
+		HourlyEmployee e = (HourlyEmployee) req.getSession().getAttribute("currentEmployee");
+		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
+		
+		ofy().delete().entity(employer).now();
+		employer.removeEmployee(e);
+		
+		e.setBonus(bonus);
+		e.setHours(hours);
+		e.setExpectedHours(expectedHours);
+		e.setPayRate(payRate);
+		e.setYearsWorked(yearsWorked);
+		e.setSickDays(sickDays);
+		
+		employer.addEmployee(e);
+		ofy().save().entity(employer).now();
+		
+		resp.sendRedirect("/dashboard.jsp");
 	}
 }

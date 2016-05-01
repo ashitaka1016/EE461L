@@ -91,6 +91,14 @@ public class CreateServlet extends HttpServlet {
 			resp.sendRedirect("/dashboarderror.jsp");
 		}
 		
+		for(Employee e : ((Employer)req.getSession().getAttribute("employer")).getEmployees()) {
+			if(id.equals(e.getID())) {
+				req.setAttribute("currentEmployee", e);
+				resp.sendRedirect("/dashboard.jsp");
+				return;
+			}
+		}
 		
+		resp.sendRedirect("dashboarderror.jsp");
 	}
 }

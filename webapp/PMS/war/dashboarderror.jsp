@@ -62,7 +62,8 @@ Welcome back, <% out.print(name); %>!</p>
 		<hr class="auto-style3" style="width: 214px" />
 		
 		<div id="layer1" style="position: absolute; width: 644px; height: 170px; z-index: 1; left: 241px; top: 136px" class="auto-style3">
-			<p>Name: <%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getName()); }%></p>
+			<p><font color="red">Invalid ID</p>
+			<p><font color="black">Name: <%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getName()); }%></p>
 			<p>ID: <%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getID()); }%></p>
 			<p>Last Paid On: </p>
 			<p>Upcoming Payment Date: </p>
@@ -88,11 +89,9 @@ Welcome back, <% out.print(name); %>!</p>
 	
 	<div id="layer2" style="position: absolute; width: 206px; height: 22px; z-index: 2; left: 250px; top: 98px">
 		<form action="/create" method="get">
-			<input name="EmployeeSearch" style="width: 194px" type="text" value="Enter Employee ID" />
+			<input name="EmployeeSearch" style="width: 194px" type="text" placeholder="Enter Employee ID" />
 		</form>
 	</div>
-
-	<div><p><font color="red">Invalid ID</p></div>
 
 </body>
 

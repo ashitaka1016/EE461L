@@ -89,11 +89,14 @@ public class CreateServlet extends HttpServlet {
 			id = Long.parseLong(req.getParameter("EmployeeSearch"));
 		} catch(NumberFormatException e) {
 			resp.sendRedirect("/dashboarderror.jsp");
+			return;
 		}
 		
-		for(Employee e : ((Employer)req.getSession().getAttribute("employer")).getEmployees()) {
+		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
+		
+		for(Employee e : employer.getEmployees()) {
 			if(id.equals(e.getID())) {
-				req.setAttribute("currentEmployee", e);
+				req.getSession().setAttribute("currentEmployee", e);
 				resp.sendRedirect("/dashboard.jsp");
 				return;
 			}

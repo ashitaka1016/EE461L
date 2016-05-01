@@ -59,6 +59,7 @@ public class PMSServlet extends HttpServlet {
 			}
 			
 			if(match) {
+				req.getSession().setAttribute("currentEmployee", null);
 				req.getSession().setAttribute("employer", e1.getUsername());
 				req.getSession().setAttribute("employerName", e1.getName());
 				resp.sendRedirect("/dashboard.jsp");

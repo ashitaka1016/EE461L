@@ -75,6 +75,9 @@
 
 </form>
 
+<div><p><font color="red">Invalid Input Detected. 
+	<br>Please check fields.</font></p></div>
+
 </body>
 
 </html>

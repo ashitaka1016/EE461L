@@ -28,12 +28,13 @@ public class CreateServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		String name = null;
-		long id = 0L;
+		Long id = null;
 		String type = null;
 		
 		try {
 			name = req.getParameter("name");
 			id = Long.parseLong(req.getParameter("id"));
+			if(id == null) { resp.sendRedirect("/createemployeeiderror.jsp"); }
 			type = req.getParameter("type");
 		} catch(NumberFormatException e) {
 			resp.sendRedirect("/createemployeeiderror.jsp");
@@ -53,7 +54,7 @@ public class CreateServlet extends HttpServlet {
 		
 		for(Employee e1 : employer.getEmployees()) {
 			System.out.println(e1.getID());
-			if(e1.getID() == id) { resp.sendRedirect("/idexists.jsp"); } 
+			if(id.equals(e1.getID())) { resp.sendRedirect("/idexists.jsp"); } 
 		}
 		
 		ofy().delete().entity(employer).now();
@@ -61,6 +62,8 @@ public class CreateServlet extends HttpServlet {
 		employer.addEmployee(e);
 		
 		ofy().save().entity(employer).now();
+		
+		req.getSession().setAttribute("currentEmployee", e);
 		
 		if(type.equals("Salary")) {
 			resp.sendRedirect("/createsalary.jsp");

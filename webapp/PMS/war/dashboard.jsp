@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.googlecode.objectify.*" %>
+<%@ page import="com.example.pms.Employee" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -61,8 +62,8 @@ Welcome back, <% out.print(name); %>!</p>
 		<hr class="auto-style3" style="width: 214px" />
 		
 		<div id="layer1" style="position: absolute; width: 644px; height: 170px; z-index: 1; left: 241px; top: 136px" class="auto-style3">
-			<p>Name: </p>
-			<p>ID: </p>
+			<p>Name: <%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(request.getSession().getAttribute("currentEmployee").getName());%></p>
+			<p>ID: <%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(request.getSession().getAttribute("currentEmployee").getID());%></p>
 			<p>Last Paid On: </p>
 			<p>Upcoming Payment Date: </p>
 		</div>

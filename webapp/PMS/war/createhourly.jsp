@@ -58,10 +58,6 @@
 			<td><input name="sickDays" style="width:100%" type="text" /></td>
 		</tr>
 		<tr>
-			<td style="width: 432px">Expected Hours: </td>
-			<td><input name="expectedHours" style="width:100%" type="text" /></td>
-		</tr>
-		<tr>
 			<td style="width: 432px">Bonus: </td>
 			<td><input name="bonus" style="width:100%" type="text" /></td>
 		</tr>

@@ -9,11 +9,23 @@
 		<servlet-name>create</servlet-name>
 		<servlet-class>com.example.pms.CreateServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>createSalary</servlet-name>
+		<servlet-class>com.example.pms.CreateSalaryServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>createHourly</servlet-name>
+		<servlet-class>com.example.pms.CreateHourlyServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>createCommission</servlet-name>
+		<servlet-class>com.example.pms.CreateCommissionServlet</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>pms</servlet-name>
 		<url-pattern>/pms</url-pattern>
 	</servlet-mapping>
-	
 	<servlet-mapping>
 		<servlet-name>pms</servlet-name>
 		<url-pattern>/signup</url-pattern>
@@ -26,9 +38,23 @@
 		<servlet-name>create</servlet-name>
 		<url-pattern>/create</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>createSalary</servlet-name>
+		<url-pattern>/createsalary</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>createHourly</servlet-name>
+		<url-pattern>/createhourly</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>createCommission</servlet-name>
+		<url-pattern>/createcommission</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>pms.jsp</welcome-file>
 	</welcome-file-list>
+	
 	<filter>
         <filter-name>ObjectifyFilter</filter-name>
         <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>

@@ -42,6 +42,7 @@ public class PMSServlet extends HttpServlet {
         ofy().save().entities(employer).now();
         
         req.getSession().setAttribute("employer", employer.getUsername());
+        req.getSession().setAttribute("employerName", employer.getName());
 		resp.sendRedirect("/dashboard.jsp");
 	}
 	
@@ -59,6 +60,7 @@ public class PMSServlet extends HttpServlet {
 			
 			if(match) {
 				req.getSession().setAttribute("employer", e1.getUsername());
+				req.getSession().setAttribute("employerName", e1.getName());
 				resp.sendRedirect("/dashboard.jsp");
 			}
 			

@@ -2,6 +2,7 @@ package com.example.pms;
 
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Serialize;
 
 @Entity
-public abstract class Employee {
+public abstract class Employee implements Serializable {
 	@Id private long ID;
 	private String name;
 	

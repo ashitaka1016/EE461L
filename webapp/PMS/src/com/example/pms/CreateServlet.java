@@ -52,12 +52,15 @@ public class CreateServlet extends HttpServlet {
 		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
 		
 		for(Employee e1 : employer.getEmployees()) {
+			System.out.println(e1.getID());
 			if(e1.getID() == id) { resp.sendRedirect("/idexists.jsp"); } 
 		}
 		
+		ofy().delete().entity(employer).now();
+		
 		employer.addEmployee(e);
 		
-		ofy().save().entity(e).now();
+		ofy().save().entity(employer).now();
 		
 		if(type.equals("Salary")) {
 			resp.sendRedirect("/createsalary.jsp");

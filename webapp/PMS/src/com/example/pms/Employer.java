@@ -39,6 +39,10 @@ public class Employer {
 		return password;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public ArrayList<Employee> getEmployees() {
 		return employees;
 	}

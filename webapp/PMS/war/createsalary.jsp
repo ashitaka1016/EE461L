@@ -63,7 +63,6 @@
 			<td style="width: 432px">Vacation Days: </td>
 			<td><input name="vacationDays" style="width:100%" type="text" /></td>
 		</tr>
-
 		<tr>
 			<td style="width: 432px">Bonus: </td>
 			<td><input name="bonus" style="width:100%" type="text" /></td>

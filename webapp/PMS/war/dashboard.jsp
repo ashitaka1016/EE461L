@@ -41,13 +41,21 @@
 	</div>
 </form>
 
-<% String name = (String) request.getSession().getAttribute("employer"); 
-	System.out.println(name);
+<% String name = (String) request.getSession().getAttribute("employerName"); 
 
+	if((name == null) || (name.equals(""))) {
 %>
 
 <p class="auto-style1">
+Welcome back!</p>
+
+<% } else { %>
+
+<p class="auto-style1">
 Welcome back, <% out.print(name); %>!</p>
+
+<% } %>
+
 	<div class="auto-style4" style="width: 222px; height: 360px;">
 		<p class="auto-style6" style="width: 216px">Menu</p>
 		<hr class="auto-style3" style="width: 214px" />

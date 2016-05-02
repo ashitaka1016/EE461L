@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.googlecode.objectify.*" %>
-<%@ page import="com.googlecode.objectify.ObjectifyService" %>
 
 <%@ page import="java.util.*" %>
 <%@ page import="com.example.pms.Employer" %>
@@ -41,9 +40,6 @@
 
 <p class="auto-style1"><strong>Select Employee</strong></p>
 
-
-
-
 <table style="width: 100%">
 	<tr>
 		<td>Name:</td>
@@ -63,11 +59,11 @@
 			<td><% out.print(employees.get(i).getName()); %></td>
 			<td><% out.print(employees.get(i).getID()); %></td>
 			<td><% if(employees.get(i) instanceof HourlyEmployee) {
-				%> <form action="edithourlyemployee.jsp"><input type="button" value="Select"></form> <%
+				%> <form action="/edithourly" method="get"><input type="submit" value="Select"></form> <%
 			} else if(employees.get(i) instanceof SalaryEmployee) {
-				%> <form action="editsalaryemployee.jsp"><input type="button" value="Select"></form> <%
+				%> <form action="/editsalary" method="get"><input type="submit" value="Select"></form> <%
 			} else {
-				%> <form action="editcommissionemployee.jsp"><input type="button" value="Select"></form> <%
+				%> <form action="/editcommission" method="get"><input type="submit" value="Select"></form> <%
 			} %>
 			</td>
 		</tr> <%

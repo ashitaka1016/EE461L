@@ -29,4 +29,9 @@ public class EditSalaryServlet extends HttpServlet {
 			throws IOException {
 		
 	}
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		
+	}
 }

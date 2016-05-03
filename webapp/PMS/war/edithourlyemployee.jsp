@@ -20,6 +20,11 @@
     text-align: center;
 }
 
+.column {
+    text-align: left;
+    color: gray;
+}
+
 .Create {
     position: absolute;
     top: 50%;
@@ -43,27 +48,33 @@
 	<table style="width: 100%">
 		<tr>
 			<td style="width: 432px">Expected Hours: </td>
-			<td><input name="expectedHours" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((HourlyEmployee)request.getSession().getAttribute("currentEmployee")).getExpectedHours()); %></td>
+			<td><input name="expectedHours" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Hours Worked: </td>
-			<td><input name="hours" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((HourlyEmployee)request.getSession().getAttribute("currentEmployee")).getHours()); %></td>
+			<td><input name="hours" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Pay Rate (per hour): </td>
-			<td><input name="payRate" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((HourlyEmployee)request.getSession().getAttribute("currentEmployee")).getPayRate()); %></td>
+			<td><input name="payRate" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Years Worked: </td>
-			<td><input name="yearsWorked" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((HourlyEmployee)request.getSession().getAttribute("currentEmployee")).getYearsWorked()); %></td>
+			<td><input name="yearsWorked" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Sick Days: </td>
-			<td><input name="sickDays" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((HourlyEmployee)request.getSession().getAttribute("currentEmployee")).getSickDays()); %></td>
+			<td><input name="sickDays" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Bonus: </td>
-			<td><input name="bonus" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((HourlyEmployee)request.getSession().getAttribute("currentEmployee")).getBonus()); %></td>
+			<td><input name="bonus" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 	</table>
 

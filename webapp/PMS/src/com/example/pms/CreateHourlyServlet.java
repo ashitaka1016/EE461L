@@ -30,7 +30,7 @@ public class CreateHourlyServlet extends HttpServlet {
 		Double expectedHours = 0.;
 		Double payRate = 0.;
 		Integer sickDays = 0;
-		Integer yearsWorked = 0;
+		Double yearsWorked = 0.;
 		Double bonus = 0.;
 		
 		try {
@@ -38,7 +38,7 @@ public class CreateHourlyServlet extends HttpServlet {
 			expectedHours = Double.parseDouble(req.getParameter("expectedHours"));
 			payRate = Double.parseDouble(req.getParameter("payRate"));
 			sickDays = Integer.parseInt(req.getParameter("sickDays"));
-			yearsWorked = Integer.parseInt(req.getParameter("yearsWorked"));
+			yearsWorked = Double.parseDouble(req.getParameter("yearsWorked"));
 			bonus = Double.parseDouble(req.getParameter("bonus"));
 		} catch(NumberFormatException e) {
 			resp.sendRedirect("/createhourlyerror.jsp");

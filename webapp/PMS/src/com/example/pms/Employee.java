@@ -53,10 +53,6 @@ public abstract class Employee implements Serializable {
 		pay = new HashMap<>();
 	}
 	
-	public boolean equals(Employee e) {
-		return this.ID == e.ID;
-	}
-	
 	public long getID() {
 		return ID;
 	}

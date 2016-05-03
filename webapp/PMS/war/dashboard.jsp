@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.googlecode.objectify.*" %>
 <%@ page import="com.example.pms.Employee" %>
+<%@ page import="com.example.pms.SalaryEmployee" %>
+<%@ page import="com.example.pms.HourlyEmployee" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -72,8 +74,8 @@ Welcome back, <% out.print(name); %>!</p>
 			<button name="CreateEmployeeBtn" style="height:20px;width:200px">Create Employee</button>
 		</form>
 		
-		<form action="selectemployee.jsp" method="post">
-			<button name="EditEmployeeInfoBtn" style="height:20px;width:200px">Edit Employee Info</button>
+		<form action="viewemployee.jsp" method="post">
+			<button name="ViewEmployeeInfoBtn" style="height:20px;width:200px">View All Employees</button>
 		</form>
 
 		<form action="demo_form.asp" method="post">
@@ -91,6 +93,14 @@ Welcome back, <% out.print(name); %>!</p>
 			<input name="EmployeeSearch" style="width: 194px" type="text" placeholder="Enter Employee ID" />
 		</form>
 	</div>
+
+<% if(request.getSession().getAttribute("currentEmployee") instanceof HourlyEmployee) {
+		%> <form action="edithourlyemployee.jsp"><input type="submit" value="Edit Employee Info"></form> <%
+	} else if(request.getSession().getAttribute("currentEmployee") instanceof SalaryEmployee) {
+		%> <form action="editsalaryemployee.jsp"><input type="submit" value="Edit Employee Info"></form> <%
+	} else {
+		%> <form action="editcommissionemployee.jsp"><input type="submit" value="Edit Employee Info"></form> <%
+	} %>
 
 </body>
 

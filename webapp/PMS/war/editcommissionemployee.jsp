@@ -20,6 +20,11 @@
     text-align: center;
 }
 
+.column {
+    text-align: left;
+    color: gray;
+}
+
 .Create {
     position: absolute;
     top: 50%;
@@ -43,31 +48,38 @@
 	<table style="width: 100%">
 		<tr>
 			<td style="width: 432px">Sales (in dollars): </td>
-			<td><input name="sales" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((CommissionEmployee)request.getSession().getAttribute("currentEmployee")).getSales()); %></td>
+			<td><input name="sales" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Commission Rate (as percent): </td>
-			<td><input name="commissionRate" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((CommissionEmployee)request.getSession().getAttribute("currentEmployee")).getCommRate()); %></td>
+			<td><input name="commissionRate" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Previous Year's Sales: </td>
-			<td><input name="previousYearSales" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((CommissionEmployee)request.getSession().getAttribute("currentEmployee")).getPrevYearSales()); %></td>
+			<td><input name="previousYearSales" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Max Sales: </td>
-			<td><input name="maxSales" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((CommissionEmployee)request.getSession().getAttribute("currentEmployee")).getMaxSales()); %></td>
+			<td><input name="maxSales" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Years Worked: </td>
-			<td><input name="yearsWorked" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((CommissionEmployee)request.getSession().getAttribute("currentEmployee")).getYearsWorked()); %></td>
+			<td><input name="yearsWorked" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Sick Days: </td>
-			<td><input name="sickDays" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((CommissionEmployee)request.getSession().getAttribute("currentEmployee")).getSickDays()); %></td>
+			<td><input name="sickDays" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 		<tr>
 			<td style="width: 432px">Bonus: </td>
-			<td><input name="bonus" style="width:100%" type="text"/></td>
+			<td class="column"><% out.print(((CommissionEmployee)request.getSession().getAttribute("currentEmployee")).getBonus()); %></td>
+			<td><input name="bonus" style="width:100%" type="text" placeholder="Enter new value here."/></td>
 		</tr>
 	</table>
 

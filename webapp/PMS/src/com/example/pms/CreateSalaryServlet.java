@@ -32,7 +32,7 @@ public class CreateSalaryServlet extends HttpServlet {
 		Integer vacDays = 0;
 		Integer sickDaysTaken = 0;
 		Integer sickDays = 0;
-		Integer yearsWorked = 0;
+		Double yearsWorked = 0.;
 		Double bonus = 0.;
 		
 		try {
@@ -42,7 +42,7 @@ public class CreateSalaryServlet extends HttpServlet {
 			vacDays = Integer.parseInt(req.getParameter("vacationDays"));
 			sickDaysTaken = Integer.parseInt(req.getParameter("sickDaysTaken"));
 			sickDays = Integer.parseInt(req.getParameter("sickDays"));
-			yearsWorked = Integer.parseInt(req.getParameter("yearsWorked"));
+			yearsWorked = Double.parseDouble(req.getParameter("yearsWorked"));
 			bonus = Double.parseDouble(req.getParameter("bonus"));
 		} catch(NumberFormatException e) {
 			resp.sendRedirect("/createsalaryerror.jsp");

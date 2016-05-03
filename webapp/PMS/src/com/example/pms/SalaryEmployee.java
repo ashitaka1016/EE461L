@@ -69,7 +69,7 @@ public class SalaryEmployee extends Employee {
 		return vacDays;
 	}
 
-	public double getSickDaysTaken() {
+	public int getSickDaysTaken() {
 		return sickDaysTaken;
 	}
 	

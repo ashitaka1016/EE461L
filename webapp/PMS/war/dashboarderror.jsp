@@ -65,7 +65,7 @@ Welcome back, <% out.print(name); %>!</p>
 		
 		<div id="layer1" style="position: absolute; width: 644px; height: 170px; z-index: 1; left: 241px; top: 136px" class="auto-style3">
 			<p><font color="red">Invalid ID</p>
-			<p>Name: <%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getName()); }%></p>
+			<p><font color="black">Name: <%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getName()); }%></p>
 			<p>ID: <%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getID()); }%></p>
 			<p>Last Paid On: </p>
 			<p>Upcoming Payment Date: </p>

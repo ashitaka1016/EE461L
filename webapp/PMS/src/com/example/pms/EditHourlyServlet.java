@@ -30,9 +30,6 @@ public class EditHourlyServlet extends HttpServlet {
 		HourlyEmployee e = (HourlyEmployee) req.getSession().getAttribute("currentEmployee");
 		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
 		
-		ofy().delete().entity(employer).now();
-		employer.removeEmployee(e);
-		
 		Double hours = e.getHours();
 		Double expectedHours = e.getExpectedHours();
 		Double payRate = e.getPayRate();
@@ -41,16 +38,26 @@ public class EditHourlyServlet extends HttpServlet {
 		Double bonus = e.getBonus();
 		
 		try {
-			hours = Double.parseDouble(req.getParameter("hours"));
-			expectedHours = Double.parseDouble(req.getParameter("expectedHours"));
-			payRate = Double.parseDouble(req.getParameter("payRate"));
-			sickDays = Integer.parseInt(req.getParameter("sickDays"));
-			yearsWorked = Double.parseDouble(req.getParameter("yearsWorked"));
-			bonus = Double.parseDouble(req.getParameter("bonus"));
+			if(!req.getParameter("hours").equals("")) { hours = Double.parseDouble(req.getParameter("hours")); }
+			if(!req.getParameter("expectedHours").equals("")) { expectedHours = Double.parseDouble(req.getParameter("expectedHours")); }
+			if(!req.getParameter("payRate").equals("")) { payRate = Double.parseDouble(req.getParameter("payRate")); }
+			if(!req.getParameter("sickDays").equals("")) { sickDays = Integer.parseInt(req.getParameter("sickDays")); }
+			if(!req.getParameter("yearsWorked").equals("")) { yearsWorked = Double.parseDouble(req.getParameter("yearsWorked")); }
+			if(!req.getParameter("bonus").equals("")) { bonus = Double.parseDouble(req.getParameter("bonus")); }
 		} catch(NumberFormatException e1) {
 			resp.sendRedirect("/edithourlyerror.jsp");
 			return;
 		}
+		
+		ofy().delete().entity(employer).now();
+		employer.removeEmployee(e);
+		
+		e.setBonus(bonus);
+		e.setHours(hours);
+		e.setExpectedHours(expectedHours);
+		e.setPayRate(payRate);
+		e.setYearsWorked(yearsWorked);
+		e.setSickDays(sickDays);
 		
 		employer.addEmployee(e);
 		ofy().save().entity(employer).now();

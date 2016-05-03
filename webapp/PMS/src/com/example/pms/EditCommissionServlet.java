@@ -30,9 +30,6 @@ public class EditCommissionServlet extends HttpServlet {
 		CommissionEmployee e = (CommissionEmployee) req.getSession().getAttribute("currentEmployee");
 		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
 		
-		ofy().delete().entity(employer).now();
-		employer.removeEmployee(e);
-		
 		Double sales = e.getSales();
 		Integer commRate = e.getCommRate();
 		Double prevYearSales = e.getPrevYearSales();
@@ -42,17 +39,28 @@ public class EditCommissionServlet extends HttpServlet {
 		Double bonus = e.getBonus();
 		
 		try {
-			sales = Double.parseDouble(req.getParameter("sales"));
-			commRate = Integer.parseInt(req.getParameter("commissionRate"));
-			prevYearSales = Double.parseDouble(req.getParameter("previousYearSales"));
-			maxSales = Double.parseDouble(req.getParameter("maxSales"));
-			sickDays = Integer.parseInt(req.getParameter("sickDays"));
-			yearsWorked = Double.parseDouble(req.getParameter("yearsWorked"));
-			bonus = Double.parseDouble(req.getParameter("bonus"));
+			if(!req.getParameter("sales").equals("")) { sales = Double.parseDouble(req.getParameter("sales")); }
+			if(!req.getParameter("commissionRate").equals("")) { commRate = Integer.parseInt(req.getParameter("commissionRate")); }
+			if(!req.getParameter("previousYearSales").equals("")) { prevYearSales = Double.parseDouble(req.getParameter("previousYearSales")); }
+			if(!req.getParameter("maxSales").equals("")) { maxSales = Double.parseDouble(req.getParameter("maxSales")); }
+			if(!req.getParameter("sickDays").equals("")) { sickDays = Integer.parseInt(req.getParameter("sickDays")); }
+			if(!req.getParameter("yearsWorked").equals("")) { yearsWorked = Double.parseDouble(req.getParameter("yearsWorked")); }
+			if(!req.getParameter("bonus").equals("")) { bonus = Double.parseDouble(req.getParameter("bonus")); }
 		} catch(NumberFormatException e1) {
 			resp.sendRedirect("/editcommissionerror.jsp");
 			return;
 		}
+		
+		ofy().delete().entity(employer).now();
+		employer.removeEmployee(e);
+		
+		e.setSales(sales);
+		e.setCommRate(commRate);
+		e.setPreviousYearSales(prevYearSales);
+		e.setMaxSales(maxSales);
+		e.setBonus(bonus);
+		e.setYearsWorked(yearsWorked);
+		e.setSickDays(sickDays);
 		
 		employer.addEmployee(e);
 		ofy().save().entity(employer).now();

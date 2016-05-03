@@ -30,9 +30,6 @@ public class EditSalaryServlet extends HttpServlet {
 		SalaryEmployee e = (SalaryEmployee) req.getSession().getAttribute("currentEmployee");
 		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
 		
-		ofy().delete().entity(employer).now();
-		employer.removeEmployee(e);
-		
 		Double salary = e.getSalary();
 		Integer overtime = e.getOvertime();
 		Double overtimeRate = e.getOvertimeRate();
@@ -43,18 +40,30 @@ public class EditSalaryServlet extends HttpServlet {
 		Double bonus = e.getBonus();
 		
 		try {
-			salary = Double.parseDouble(req.getParameter("salary"));
-			overtime = Integer.parseInt(req.getParameter("overtime"));
-			overtimeRate = Double.parseDouble(req.getParameter("overtimeRate"));
-			vacDays = Integer.parseInt(req.getParameter("vacationDays"));
-			sickDaysTaken = Integer.parseInt(req.getParameter("sickDaysTaken"));
-			sickDays = Integer.parseInt(req.getParameter("sickDays"));
-			yearsWorked = Double.parseDouble(req.getParameter("yearsWorked"));
-			bonus = Double.parseDouble(req.getParameter("bonus"));
+			if(!req.getParameter("salary").equals("")) { salary = Double.parseDouble(req.getParameter("salary")); }
+			if(!req.getParameter("overtime").equals("")) { overtime = Integer.parseInt(req.getParameter("overtime")); }
+			if(!req.getParameter("overtimeRate").equals("")) { overtimeRate = Double.parseDouble(req.getParameter("overtimeRate")); }
+			if(!req.getParameter("vacationDays").equals("")) { vacDays = Integer.parseInt(req.getParameter("vacationDays")); }
+			if(!req.getParameter("sickDaysTaken").equals("")) { sickDaysTaken = Integer.parseInt(req.getParameter("sickDaysTaken")); }
+			if(!req.getParameter("sickDays").equals("")) { sickDays = Integer.parseInt(req.getParameter("sickDays")); }
+			if(!req.getParameter("yearsWorked").equals("")) { yearsWorked = Double.parseDouble(req.getParameter("yearsWorked")); }
+			if(!req.getParameter("bonus").equals("")) { bonus = Double.parseDouble(req.getParameter("bonus")); }
 		} catch(NumberFormatException e1) {
 			resp.sendRedirect("/editsalaryerror.jsp");
 			return;
 		}
+		
+		ofy().delete().entity(employer).now();
+		employer.removeEmployee(e);
+		
+		e.setBonus(bonus);
+		e.setSalary(salary);
+		e.setOvertime(overtime);
+		e.setOvertimeRate(overtimeRate);
+		e.setVacDays(vacDays);
+		e.setYearsWorked(yearsWorked);
+		e.setSickDaysTaken(sickDaysTaken);
+		e.setSickDays(sickDays);
 		
 		employer.addEmployee(e);
 		ofy().save().entity(employer).now();

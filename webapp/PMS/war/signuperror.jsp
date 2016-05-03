@@ -14,7 +14,6 @@
         <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
   <div class="col-md-12">
     <div><h1 style="text-align:center">Sign Up</h1></div>
   </div>
@@ -47,6 +46,8 @@
 
                 </form>
     </div>
+
+<p><font color="red">Invalid Username (check to make sure your username does not match your name or password)</p>
 
 </body>
 </html>

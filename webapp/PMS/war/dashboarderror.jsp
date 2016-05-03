@@ -69,6 +69,13 @@ Welcome back, <% out.print(name); %>!</p>
 			<p>ID: <%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getID()); }%></p>
 			<p>Last Paid On: </p>
 			<p>Upcoming Payment Date: </p>
+			<% if(request.getSession().getAttribute("currentEmployee") instanceof HourlyEmployee) {
+				%> <form action="/edithourly" method="get"><input type="submit" value="Edit Employee Info"></form> <%
+			} else if(request.getSession().getAttribute("currentEmployee") instanceof SalaryEmployee) {
+				%> <form action="/editsalary" method="get"><input type="submit" value="Edit Employee Info"></form> <%
+			} else if(request.getSession().getAttribute("currentEmployee") != null) {
+				%> <form action="/editcommission" method="get"><input type="submit" value="Edit Employee Info"></form> <%
+			} %>
 		</div>
 				
 		<form action="create.jsp">
@@ -94,14 +101,6 @@ Welcome back, <% out.print(name); %>!</p>
 			<input name="EmployeeSearch" style="width: 194px" type="text" placeholder="Enter Employee ID" />
 		</form>
 	</div>
-
-<% if(request.getSession().getAttribute("currentEmployee") instanceof HourlyEmployee) {
-		%> <form action="/edithourly" method="get"><input type="submit" value="Edit Employee Info"></form> <%
-	} else if(request.getSession().getAttribute("currentEmployee") instanceof SalaryEmployee) {
-		%> <form action="/editsalary" method="get"><input type="submit" value="Edit Employee Info"></form> <%
-	} else {
-		%> <form action="/editcommission" method="get"><input type="submit" value="Edit Employee Info"></form> <%
-	} %>
 
 </body>
 

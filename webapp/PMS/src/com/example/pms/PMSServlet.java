@@ -31,7 +31,22 @@ public class PMSServlet extends HttpServlet {
 		String name = req.getParameter("name");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        
+        if(username == null || username.equals(name) || username.equals(password)) {
+        	resp.sendRedirect("/signuperror.jsp");
+			return;
+        }
+        
         Employer employer = new Employer(name, username, password);
+        
+        Employer e = (Employer) ofy().load().type(Employer.class).id(username).get();
+		
+		if(e != null) {
+			System.out.println(e.getPassword());
+			System.out.println(e.getUsername());
+			resp.sendRedirect("/signuperror.jsp");
+			return;
+		}
         
         ofy().save().entities(employer).now();
         
@@ -42,26 +57,20 @@ public class PMSServlet extends HttpServlet {
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-			List<Employer> employers = ofy().load().type(Employer.class).list();
-			boolean match = false;
-			Employer e1 = null;
-			
-			for(Employer e : employers) {
-				if(e.getUsername().equals(req.getParameter("username")) && e.getPassword().equals(req.getParameter("password"))) {
-					match = true;
-					e1 = e;
-				}
-			}
-			
-			if(match) {
-				req.getSession().setAttribute("currentEmployee", null);
-				req.getSession().setAttribute("employer", e1.getUsername());
-				req.getSession().setAttribute("employerName", e1.getName());
-				resp.sendRedirect("/dashboard.jsp");
-				return;
-			}
-			
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		
+		Employer e = (Employer) ofy().load().type(Employer.class).id(username).get();
+		
+		if(e == null || (!password.equals(e.getPassword()))) {
 			resp.sendRedirect("/loginerror.jsp");
+			return;
+		}
+		
+		req.getSession().setAttribute("currentEmployee", null);
+		req.getSession().setAttribute("employer", e.getUsername());
+		req.getSession().setAttribute("employerName", e.getName());
+		resp.sendRedirect("/dashboard.jsp");
 	}
 
 }

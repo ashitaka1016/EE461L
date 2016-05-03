@@ -26,6 +26,11 @@
     position: absolute;
     top: 50%;
 }
+.name {
+	font-size: large;
+	font-weight: bold;
+}
+
 </style>
 
 </head>
@@ -38,15 +43,16 @@
 	</div>
 </form>
 
-<p class="auto-style1"><strong>Select Employee</strong></p>
+<p class="auto-style1"><strong>Your Employees</strong></p>
 
 <table style="width: 100%">
 	<tr>
-		<td>Name:</td>
-		<td>ID:</td>
-		<td>Action:</td>
+		<td class="name">Name:</td>
+		<td class="name">ID:</td>
 	</tr>
 	<tr>
+		<td></td>
+		<td></td>
 	</tr>
 	<%  
 		ObjectifyService.register(Employer.class);
@@ -58,14 +64,6 @@
 		<tr>
 			<td><% out.print(employees.get(i).getName()); %></td>
 			<td><% out.print(employees.get(i).getID()); %></td>
-			<td><% if(employees.get(i) instanceof HourlyEmployee) {
-				%> <form action="/edithourly" method="get"><input type="submit" value="Select"></form> <%
-			} else if(employees.get(i) instanceof SalaryEmployee) {
-				%> <form action="/editsalary" method="get"><input type="submit" value="Select"></form> <%
-			} else {
-				%> <form action="/editcommission" method="get"><input type="submit" value="Select"></form> <%
-			} %>
-			</td>
 		</tr> <%
 	}
 	%>

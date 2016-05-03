@@ -64,6 +64,9 @@ public class EditCommissionServlet extends HttpServlet {
 		
 		employer.addEmployee(e);
 		ofy().save().entity(employer).now();
+		
+		req.getSession().setAttribute("currentEmployee", e);
+		
 		resp.sendRedirect("/editcommissionemployee.jsp");
 	}
 	

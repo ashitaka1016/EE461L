@@ -51,7 +51,7 @@ public class Employer {
 		e.addPayday(date, amount);
 	}
 	
-	public Date parseDate(String d) throws NumberFormatException {
+	public static Date parseDate(String d) throws NumberFormatException {
 		@SuppressWarnings("deprecation")
 		Date date = new Date(Integer.parseInt(d.substring(0, 4)), Integer.parseInt(d.substring(5, 7)), Integer.parseInt(d.substring(8, 10)));
 		

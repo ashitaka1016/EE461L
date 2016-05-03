@@ -24,7 +24,6 @@ public class PaymentServlet extends HttpServlet {
 	}
 	
 	//private static final Logger log = Logger.getLogger(EditHourlyServlet.class.getName());
-	  
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {

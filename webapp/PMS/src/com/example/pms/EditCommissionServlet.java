@@ -34,29 +34,29 @@ public class EditCommissionServlet extends HttpServlet {
 		employer.removeEmployee(e);
 		
 		Double sales = e.getSales();
-		Double commRate = e.getCommRate();
-		Double prevYearSales = ;
-		Double maxSales = 0.;
-		Integer sickDays = 0;
-		Double yearsWorked = 0.;
-		Double bonus = 0.;
+		Integer commRate = e.getCommRate();
+		Double prevYearSales = e.getPrevYearSales();
+		Double maxSales = e.getMaxSales();
+		Integer sickDays = e.getSickDays();
+		Double yearsWorked = e.getYearsWorked();
+		Double bonus = e.getBonus();
 		
 		try {
 			sales = Double.parseDouble(req.getParameter("sales"));
-			commRate = Double.parseDouble(req.getParameter("commissionRate"));
+			commRate = Integer.parseInt(req.getParameter("commissionRate"));
 			prevYearSales = Double.parseDouble(req.getParameter("previousYearSales"));
 			maxSales = Double.parseDouble(req.getParameter("maxSales"));
 			sickDays = Integer.parseInt(req.getParameter("sickDays"));
 			yearsWorked = Double.parseDouble(req.getParameter("yearsWorked"));
 			bonus = Double.parseDouble(req.getParameter("bonus"));
 		} catch(NumberFormatException e1) {
-			resp.sendRedirect("/editsalaryerror.jsp");
+			resp.sendRedirect("/editcommissionerror.jsp");
 			return;
 		}
 		
 		employer.addEmployee(e);
 		ofy().save().entity(employer).now();
-		resp.sendRedirect("/editsalaryemployee.jsp");
+		resp.sendRedirect("/editcommissionemployee.jsp");
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)

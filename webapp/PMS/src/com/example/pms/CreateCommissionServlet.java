@@ -27,7 +27,7 @@ public class CreateCommissionServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		Double sales = 0.;
-		Double commRate = 0.;
+		Integer commRate = 0;
 		Double prevYearSales = 0.;
 		Double maxSales = 0.;
 		Integer sickDays = 0;
@@ -36,7 +36,7 @@ public class CreateCommissionServlet extends HttpServlet {
 		
 		try {
 			sales = Double.parseDouble(req.getParameter("sales"));
-			commRate = Double.parseDouble(req.getParameter("commissionRate"));
+			commRate = Integer.parseInt(req.getParameter("commissionRate"));
 			prevYearSales = Double.parseDouble(req.getParameter("previousYearSales"));
 			maxSales = Double.parseDouble(req.getParameter("maxSales"));
 			sickDays = Integer.parseInt(req.getParameter("sickDays"));

@@ -22,8 +22,8 @@ public class CommissionEmployee extends Employee {
 		this.sales = sales;
 	}
 
-	public void setCommRate(int commRate) {
-		this.commRate = commRate;
+	public void setCommRate(int commRate2) {
+		this.commRate = commRate2;
 	}
 
 	public void setPreviousYearSales(double previousYearSales) {
@@ -40,8 +40,8 @@ public class CommissionEmployee extends Employee {
 		return sales;
 	}
 	
-	public double getCommRate() {
-		return commRate * 0.01;
+	public int getCommRate() {
+		return commRate;
 	}
 	
 	public double getPrevYearSales() {

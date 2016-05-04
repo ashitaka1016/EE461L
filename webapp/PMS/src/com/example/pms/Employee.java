@@ -17,7 +17,7 @@ public abstract class Employee implements Serializable {
 	private String name;
 	
 	protected double yearsWorked;
-	@Serialize protected Date startDate;
+	protected Date startDate;
 	protected int sickDays;
 	@Serialize protected HashMap<Date, Double> pay;
 	protected double bonus = 0; // could take the form of a base salary for commission employees

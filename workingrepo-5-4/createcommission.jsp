@@ -87,18 +87,24 @@
 	    
     <div class="container">
 
-      <form class="form-signin" action="/create" method="post">
-        <h2 class="form-signin-heading">Create New Employee</h2>
-        <label for="inputEmail" class="sr-only">Name</label>
-        <input name="name" type="text" id="inputEmail" class="form-control" placeholder="Name" required autofocus>
-        <label for="inputEmail" class="sr-only">ID</label>
-        <input name="id" type="text" id="inputEmail" class="form-control" placeholder="ID" required autofocus>
-        <label for="inputPassword" class="sr-only">Type</label>
-        <select name="type" class="form-control" style="margin-bottom:15px">
-					<option value="Salary">Salary</option>
-					<option value="Hourly">Hourly</option>
-					<option value="Commission">Commission</option>
-				</select>
+      <form class="form-signin" action="/createcommission" method="post">
+        <h2 class="form-signin-heading">Commission Employee</h2>
+        <label for="inputEmail" class="sr-only">Sales</label>
+        <input name="sales" type="text" id="inputEmail" class="form-control" placeholder="Sales (in Dollars)" required autofocus>
+        <label for="inputEmail" class="sr-only">CommissionRate</label>
+        <input name="commissionRate" type="text" id="inputEmail" class="form-control" placeholder="Commission Rate (as percent)" required autofocus>
+        <label for="inputEmail" class="sr-only">PreviousYearSales</label>
+        <input name="previousYearSales" type="text" id="inputEmail" class="form-control" placeholder="Previous Year Sales" required autofocus>
+        <label for="inputEmail" class="sr-only">MaxSales</label>
+        <input name="maxSales" type="text" id="inputEmail" class="form-control" placeholder="Max Sales" required autofocus>
+        <label for="inputEmail" class="sr-only">YearsWorked</label>
+        <input name="yearsWorked" type="text" id="inputEmail" class="form-control" placeholder="Years Worked" required autofocus>
+        <label for="inputEmail" class="sr-only">SickDays</label>
+        <input name="sickDays" type="text" id="inputEmail" class="form-control" placeholder="Sick Days" required autofocus>
+        <label for="inputEmail" class="sr-only">Bonus</label>
+        <input name="bonus" type="text" id="inputEmail" class="form-control" style="margin-bottom:15px" placeholder="Bonus" required autofocus>
+
+        
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
       </form>
 

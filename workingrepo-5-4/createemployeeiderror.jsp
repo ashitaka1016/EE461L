@@ -86,7 +86,7 @@
 	    
     <div class="container">
 
-      <form class="form-signin" action="/signup" method="post">
+      <form class="form-signin" action="/create" method="post">
         <h2 class="form-signin-heading">Create New Employee</h2>
         <label for="inputEmail" class="sr-only">Name</label>
         <input name="name" type="text" id="inputEmail" class="form-control" placeholder="Name" required autofocus>

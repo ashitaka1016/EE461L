@@ -92,6 +92,8 @@
         <input name="name" type="text" id="inputEmail" class="form-control" placeholder="Name" required autofocus>
         <label for="inputEmail" class="sr-only">ID</label>
         <input name="id" type="text" id="inputEmail" class="form-control" placeholder="ID" required autofocus>
+        <label for="inputEmail" class="sr-only">StartDate</label>
+        <input name="startDate" type="text" id="inputEmail" class="form-control" placeholder="Start Date (YYYY/MM/DD)" required autofocus>
         <label for="inputPassword" class="sr-only">Type</label>
         <select name="type" class="form-control" style="margin-bottom:15px">
 					<option value="Salary">Salary</option>

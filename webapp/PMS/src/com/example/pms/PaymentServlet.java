@@ -58,4 +58,9 @@ public class PaymentServlet extends HttpServlet {
 
 		resp.sendRedirect("dashboard.jsp");
 	}
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		
+	}
 }

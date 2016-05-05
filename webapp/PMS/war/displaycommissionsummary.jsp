@@ -97,11 +97,11 @@
 		<td class="auto-style2"><strong><% 
 		int rating = e.analyzeProductivity(e.calcContribution());
 		switch(rating){
-			case 1: out.print("F");
-			case 2: out.print("D");
-			case 3: out.print("C");
-			case 4: out.print("B");
-			case 5: out.print("A");
+			case 1: out.print("F"); break;
+			case 2: out.print("D"); break;
+			case 3: out.print("C"); break;
+			case 4: out.print("B"); break;
+			case 5: out.print("A"); break;
 		}
 		%> </strong></td>
 	</tr>

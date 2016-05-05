@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -86,26 +87,18 @@
 	    
     <div class="container">
 
-      <form class="form-signin" action="/create" method="post">
-        <h2 class="form-signin-heading">Create New Employee</h2>
-        <label for="inputEmail" class="sr-only">Name</label>
-        <input name="name" type="text" id="inputEmail" class="form-control" placeholder="Name" required autofocus>
-        <label for="inputEmail" class="sr-only">ID</label>
-        <input name="id" type="text" id="inputEmail" class="form-control" placeholder="ID" required autofocus>
-        <label for="inputEmail" class="sr-only">StartDate</label>
-        <input name="startDate" type="text" id="inputEmail" class="form-control" placeholder="Start Date (YYYY/MM/DD)" required autofocus>
-        <label for="inputPassword" class="sr-only">Type</label>
-        <select name="type" class="form-control" style="margin-bottom:15px">
-					<option value="Salary">Salary</option>
-					<option value="Hourly">Hourly</option>
-					<option value="Commission">Commission</option>
-				</select>
-		<button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom:15px">Create</button>
-		<div><p><font color="red">Invalid ID Format (numbers only, please)</font></p></div>
-      </form>	
+      <form class="form-signin" action="/payment" method="post">
+        <h2 class="form-signin-heading">Edit Payroll</h2>
+        <label for="inputEmail" class="sr-only">Date</label>
+        <input name="date" type="text" id="inputEmail" class="form-control" placeholder="Date (YYYY/MM/DD)" required autofocus>
+        <label for="inputEmail" class="sr-only">Amount</label>
+        <input name="amount" type="text" id="inputEmail" class="form-control" style="margin-bottom:15px" placeholder="Amount (in Dollars)" required autofocus>
+
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Enter</button>
+      </form>
+
     </div> <!-- /container -->
 
-	
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="ie10-viewport-bug-workaround.js"></script>

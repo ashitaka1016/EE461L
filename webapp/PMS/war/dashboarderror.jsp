@@ -147,7 +147,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <form class="navbar-brand" action="dashboard.jsp">Home</form>
+          <a class="navbar-brand" href="dashboard.jsp">Home</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -225,6 +225,11 @@
                 </tr>
                </tbody>
             </table>
+            <%if(request.getSession().getAttribute("currentEmployee") != null) { %>
+            <form action="/remove" method="post" style="max-width: 330px;padding: 15px;margin: 0 auto;">
+            	<button class="btn btn-lg btn-primary btn-block" type="submit">Remove Employee</button>
+            </form>
+            <% } %>
           </div>
         </div>
       </div>

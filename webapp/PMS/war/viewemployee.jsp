@@ -147,7 +147,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <form class="navbar-brand" action="dashboard.jsp">Home</form>
+          <a class="navbar-brand" href="dashboard.jsp">Home</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -160,7 +160,7 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h2 class="form-signin-heading">View All Employees</h2>
 		  <div class="table-responsive">
-            <table class="table table-striped" align="center" style="width:50%">
+            <table class="table table-striped" style="width:50%">
               <thead>
               	<tr style="background-color:#fff">
               		<td><strong>Name:</strong></td>

@@ -15,14 +15,14 @@
     <title>Productivity Management Service</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <!--link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet"-->
-    <link href="dashboard.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"> 
     
     <style>
     /*
@@ -145,7 +145,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <form class="navbar-brand" action="dashboard.jsp">Home</form>
+          <a class="navbar-brand" href="dashboard.jsp">Home</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -159,7 +159,7 @@
     <h2 class="form-signin-heading">Edit Commission Employee</h2>
 		  <div class="table-responsive">
 		  	<form action="/editcommission" method="post">
-            <table class="table table-striped" align="center" style="width:50%">
+            <table class="table table-striped" style="width:50%">
               <tbody>
 				<tr>
 					<td style="width: 432px">Sales (in dollars): </td>

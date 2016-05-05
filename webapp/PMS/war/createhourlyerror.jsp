@@ -75,7 +75,7 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	          <form class="navbar-brand" action="dashboard.jsp">Home</form>
+	          <a class="navbar-brand" href="dashboard.jsp">Home</a>
 	        </div>
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">

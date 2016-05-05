@@ -59,8 +59,12 @@ public class PaymentServlet extends HttpServlet {
 		resp.sendRedirect("dashboard.jsp");
 	}
 	
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+	/*public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		Date current = new Date();
+		int[] 
+		Date closestPrev = new Date(Employer.parseDate(((Employee)req.getSession().getAttribute("currentEmployee")).getStartDate()));
 		
-	}
+		
+	}*/
 }

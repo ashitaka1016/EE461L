@@ -119,4 +119,6 @@ public abstract class Employee implements Serializable {
 	public abstract double calcContribution();
 	
 	public abstract int analyzeProductivity(double cont);
+	
+	public abstract String toString();
 }

@@ -113,4 +113,8 @@ public class CommissionEmployee extends Employee {
 		
 		return 1; // "F" grade
 	}
+	
+	public String toString() {
+		return "Commission";
+	}
 }

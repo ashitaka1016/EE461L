@@ -165,6 +165,7 @@
               	<tr style="background-color:#fff">
               		<td><strong>Name:</strong></td>
               		<td><strong>ID:</strong></td>
+              		<td><strong>Type:</strong></td>
               	</tr>
               </thead>
               <tbody>
@@ -177,6 +178,7 @@
 					<tr>
 						<td><% out.print(employees.get(i).getName()); %></td>
 						<td><% out.print(employees.get(i).getID()); %></td>
+						<td><% out.print(employees.get(i)); %></td>
 					</tr> <%
 					}
 					%>

@@ -97,4 +97,8 @@ public class HourlyEmployee extends Employee {
 		
 		return 1; // employee has not met expectations whatsoever
 	}
+	
+	public String toString() {
+		return "Hourly";
+	}
 }

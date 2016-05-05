@@ -118,4 +118,8 @@ public class SalaryEmployee extends Employee {
 		
 		return 2; // no "F" grades for salary employees
 	}
+	
+	public String toString() {
+		return "Salary";
+	}
 }

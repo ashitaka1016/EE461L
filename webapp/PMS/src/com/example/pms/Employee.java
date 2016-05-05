@@ -17,7 +17,7 @@ public abstract class Employee implements Serializable {
 	private String name;
 	
 	protected double yearsWorked;
-	protected Date startDate;
+	protected String startDate;
 	protected int sickDays;
 	@Serialize protected HashMap<Date, Double> pay;
 	protected double bonus = 0; // could take the form of a base salary for commission employees
@@ -52,7 +52,7 @@ public abstract class Employee implements Serializable {
 		name = n;
 		ID = id;
 		pay = new HashMap<>();
-		startDate = new Date();
+		startDate = "1800/10/10";
 	}
 	
 	public long getID() {
@@ -90,12 +90,12 @@ public abstract class Employee implements Serializable {
 	public double getBonus() {
 		return bonus;
 	}
-	
-	public Date getStartDate() {
+
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 	

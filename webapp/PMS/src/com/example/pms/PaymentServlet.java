@@ -27,13 +27,17 @@ public class PaymentServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		Date date = null;
+		int[] date = null;
+		Date d = null;
 		Double amount = 0.;
 		
 		try {
-			if(!("".equals(req.getParameter("date")))) { date = Employer.parseDate(req.getParameter("date")); }
+			if(!("".equals(req.getParameter("date")))) { 
+				date = Employer.parseDate(req.getParameter("date"));
+				d = new Date(date[0], date[1], date[2]);
+			}
 			if(!("".equals(req.getParameter("date")))) { amount = Double.parseDouble(req.getParameter("amount")); }
-			if(date.compareTo(new Date()) < 0) { throw new Exception(); }
+			if(d.compareTo(new Date()) < 0) { throw new Exception(); }
 		} catch(Exception e) {
 			resp.sendRedirect("paymententryerror.jsp");
 			return;
@@ -45,7 +49,7 @@ public class PaymentServlet extends HttpServlet {
 		ofy().delete().entity(e1).now();
 		e1.removeEmployee(e);
 		
-		e.addPayday(date, amount);
+		e.addPayday(d, amount);
 		
 		e1.addEmployee(e);
 		ofy().save().entity(e1).now();

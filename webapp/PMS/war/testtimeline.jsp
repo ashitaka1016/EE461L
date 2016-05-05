@@ -28,9 +28,7 @@
     var dataTable = new google.visualization.DataTable();
     var id = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %>"<%= e.getEmployees().get(i).getID() %>"<%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
     var name = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %>"<%= e.getEmployees().get(i).getName() %>"<%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
-    var years = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %><%= e.getEmployees().get(i).getStartDate().getYear() %><%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
-    var months = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %><%= e.getEmployees().get(i).getStartDate().getMonth() %><%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
-    var days = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %><%= e.getEmployees().get(i).getStartDate().getDate() %><%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
+    var dates = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %>"<%= e.getEmployees().get(i).getStartDate() %>"<%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
     var length = "<%=size%>";
 
     dataTable.addColumn({ type: 'string', id: 'Term' });
@@ -40,7 +38,7 @@
 
     for(i = 0; i < length; i++) {
       dataTable.addRows([
-        [ id[i], name[i], new Date(years[i], months[i], days[i]), new Date() ]]);
+        [ id[i], name[i], new Date(dates[i]), new Date() ]]);
     }
 
     chart.draw(dataTable);

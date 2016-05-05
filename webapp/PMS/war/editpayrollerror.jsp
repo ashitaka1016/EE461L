@@ -88,7 +88,7 @@
     <div class="container">
 
       <form class="form-signin" action="/payment" method="post">
-        <h2 class="form-signin-heading">Edit Payroll</h2>
+        <h2 class="form-signin-heading">Add New Payment Date</h2>
         <label for="inputEmail" class="sr-only">Date</label>
         <input name="date" type="text" id="inputEmail" class="form-control" placeholder="Date (YYYY/MM/DD)" required autofocus>
         <label for="inputEmail" class="sr-only">Amount</label>

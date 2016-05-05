@@ -201,20 +201,25 @@
 		<% } %>
 		  <div class="table-responsive">
             <table class="table table-striped" align="center" style="width:50%">
+              <thead>
+              	<tr style="background-color:#fff">
+              		<td><strong>Currently Selected Employee</strong></td>
+              	</tr>
+              </thead>
               <tbody>
-                <tr style="background-color:#fff">
+                <tr style="background-color:#f9f9f9">
                   <td>Name:</td>
                   <td style="text-align:right"><%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getName()); }%></td>
                 </tr>
-                <tr style="background-color:#f9f9f9">
+                <tr style="background-color:#fff">
                   <td>ID:</td>
                   <td style="text-align:right"><%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getID()); }%></td>
                 </tr>
-                <tr style="background-color:#fff">
+                <tr style="background-color:#f9f9f9">
                   <td>Last Paid On:</td>
                   <td></td>
                 </tr>
-                <tr style="background-color:#f9f9f9">
+                <tr style="background-color:#fff">
                   <td>Upcoming Payment Date:</td>
                   <td></td>
                 </tr>

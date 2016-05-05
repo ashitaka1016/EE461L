@@ -54,7 +54,7 @@ public class CreateHourlyServlet extends HttpServlet {
 		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
 		
 		ofy().delete().entity(employer).now();
-		employer.removeEmployee(e);
+		employer.removeEmployee((Employee) req.getSession().getAttribute("currentEmployee"));
 		
 		e.setBonus(bonus);
 		e.setHours(hours);

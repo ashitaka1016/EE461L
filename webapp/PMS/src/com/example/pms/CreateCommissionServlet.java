@@ -56,7 +56,7 @@ public class CreateCommissionServlet extends HttpServlet {
 		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
 		
 		ofy().delete().entity(employer).now();
-		employer.removeEmployee(e);
+		employer.removeEmployee((Employee) req.getSession().getAttribute("currentEmployee"));
 		
 		e.setSales(sales);
 		e.setCommRate(commRate);

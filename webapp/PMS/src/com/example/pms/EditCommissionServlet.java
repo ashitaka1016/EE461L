@@ -52,7 +52,7 @@ public class EditCommissionServlet extends HttpServlet {
 		}
 		
 		ofy().delete().entity(employer).now();
-		employer.removeEmployee(e);
+		employer.removeEmployee((Employee) req.getSession().getAttribute("currentEmployee"));
 		
 		e.setSales(sales);
 		e.setCommRate(commRate);

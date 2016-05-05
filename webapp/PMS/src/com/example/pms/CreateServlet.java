@@ -36,7 +36,7 @@ public class CreateServlet extends HttpServlet {
 			id = Long.parseLong(req.getParameter("id"));
 			if(id == null) { resp.sendRedirect("/createemployeeiderror.jsp"); }
 			type = req.getParameter("type");
-			//Employer.parseDate(req.getParameter("startDate"));
+			Employer.parseDate(req.getParameter("startDate"));
 		} catch(NumberFormatException e) {
 			resp.sendRedirect("/createemployeeiderror.jsp");
 			return;
@@ -52,7 +52,7 @@ public class CreateServlet extends HttpServlet {
 			e = new CommissionEmployee(name, id);
 		}
 		
-		//e.setStartDate(req.getParameter("startDate"));
+		e.setStartDate(req.getParameter("startDate"));
 		
 		Employer employer = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
 		

@@ -52,7 +52,7 @@ public class EditSalaryServlet extends HttpServlet {
 		}
 		
 		ofy().delete().entity(employer).now();
-		employer.removeEmployee(e);
+		employer.removeEmployee((Employee) req.getSession().getAttribute("currentEmployee"));
 		
 		e.setBonus(bonus);
 		e.setSalary(salary);

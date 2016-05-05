@@ -42,9 +42,7 @@ public class PMSServlet extends HttpServlet {
         Employer e = (Employer) ofy().load().type(Employer.class).id(username).get();
 		
 		if(e != null) {
-			System.out.println(e.getPassword());
-			System.out.println(e.getUsername());
-			resp.sendRedirect("/signuperror.jsp");
+			resp.sendRedirect("/usernameexists.jsp");
 			return;
 		}
         
@@ -60,9 +58,14 @@ public class PMSServlet extends HttpServlet {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		
+		if(username.equals("") || (password.equals(""))) {
+			resp.sendRedirect("/loginerror.jsp");
+			return;
+		}
+		
 		Employer e = (Employer) ofy().load().type(Employer.class).id(username).get();
 		
-		if(e == null || (!password.equals(e.getPassword()))) {
+		if((e == null) || (!password.equals(e.getPassword()))) {
 			resp.sendRedirect("/loginerror.jsp");
 			return;
 		}

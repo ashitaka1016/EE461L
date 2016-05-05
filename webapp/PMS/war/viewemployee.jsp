@@ -1,8 +1,8 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.googlecode.objectify.*" %>
 <%@ page import="com.example.pms.Employee" %>
-<%@ page import="com.example.pms.SalaryEmployee" %>
-<%@ page import="com.example.pms.HourlyEmployee" %>
+<%@ page import="com.example.pms.Employer" %>
+<%@ page import="java.util.ArrayList" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -18,7 +18,7 @@
     <title>Productivity Management Service</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -169,7 +169,6 @@
               </thead>
               <tbody>
 					<%  
-					ObjectifyService.register(Employer.class);
 					Employer employer = (Employer)ObjectifyService.ofy().load().type(Employer.class).id((String)request.getSession().getAttribute("employer")).get();
 					ArrayList<Employee> employees = employer.getEmployees();
 					int size = employees.size();

@@ -19,7 +19,8 @@ public abstract class Employee implements Serializable {
 	protected double yearsWorked;
 	protected String startDate;
 	protected int sickDays;
-	@Serialize protected HashMap<Date, Double> pay;
+	@Serialize protected ArrayList<Date> dates;
+	@Serialize protected ArrayList<Double> amounts;
 	protected double bonus = 0; // could take the form of a base salary for commission employees
 	
 	public void setID(long iD) {
@@ -38,8 +39,12 @@ public abstract class Employee implements Serializable {
 		this.sickDays = sickDays;
 	}
 
-	public void setPay(HashMap<Date, Double> map) {
-		pay = map;
+	public void addDate(Date date) {
+		dates.add(date);
+	}
+	
+	public void addAmount(Double amount) {
+		amounts.add(amount);
 	}
 
 	public void setBonus(double bonus) {
@@ -51,7 +56,8 @@ public abstract class Employee implements Serializable {
 	public Employee(String n, long id) {
 		name = n;
 		ID = id;
-		pay = new HashMap<>();
+		dates = new ArrayList<>();
+		amounts = new ArrayList<>();
 		startDate = "1800/10/10";
 	}
 	
@@ -75,16 +81,16 @@ public abstract class Employee implements Serializable {
 		
 	}
 	
-	public void addPayday(Date d, Double dou) {
-		pay.put(d, dou);
-	}
-	
 	public double getYearsWorked() {
 		return yearsWorked;
 	}
 
-	public HashMap<Date, Double> getPay() {
-		return pay;
+	public ArrayList<Date> getDates() {
+		return dates;
+	}
+	
+	public ArrayList<Double> getAmounts() {
+		return amounts;
 	}
 
 	public double getBonus() {
@@ -110,7 +116,8 @@ public abstract class Employee implements Serializable {
 		if(!(getName().equals(e.getName()))) { return false; }
 		if(!(getYearsWorked() == e.getYearsWorked())) { return false; }
 		if(!(getSickDays() == e.getSickDays())) { return false; }
-		if(!(getPay().equals(e.getPay()))) { return false; }
+		if(!(getDates().equals(e.getDates()))) { return false; }
+		if(!(getAmounts().equals(e.getAmounts()))) { return false; }
 		if(!(getBonus() == e.getBonus())) { return false; }
 
 		return true;
@@ -121,4 +128,5 @@ public abstract class Employee implements Serializable {
 	public abstract int analyzeProductivity(double cont);
 	
 	public abstract String toString();
+
 }

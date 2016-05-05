@@ -54,7 +54,7 @@ public class CommissionEmployee extends Employee {
 	
 	@Override
 	public double calcCompensation() {
-		double sales = commRate * this.sales;
+		double sales = (commRate*0.01) * this.sales;
 		
 		if((maxSales == 0) || (maxSales < this.sales)) {
 			maxSales = this.sales;

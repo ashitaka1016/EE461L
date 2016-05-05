@@ -198,6 +198,11 @@
 				<tr>
 					<td>Bonus: </td>
 					<td><% out.print(e.getBonus()); %></td>
+				</tr>
+				<tr>
+					<td>Total Compensation: </td>
+					<td><% out.print(e.calcCompensation()); %></td>
+				</tr>
 				<tr>
 					<td><strong>Rating: </strong> </td>
 					<td><font color="red"><strong><% 

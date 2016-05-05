@@ -25,6 +25,7 @@ public class PaymentServlet extends HttpServlet {
 	
 	//private static final Logger log = Logger.getLogger(EditHourlyServlet.class.getName());
 	
+	@SuppressWarnings("deprecation")
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		int[] date = null;
@@ -34,12 +35,17 @@ public class PaymentServlet extends HttpServlet {
 		try {
 			if(!("".equals(req.getParameter("date")))) { 
 				date = Employer.parseDate(req.getParameter("date"));
-				d = new Date(date[0], date[1], date[2]);
+				d = new Date((date[0] - 1900), (date[1] - 1), date[2]);
 			}
 			if(!("".equals(req.getParameter("date")))) { amount = Double.parseDouble(req.getParameter("amount")); }
 			if(d.compareTo(new Date()) < 0) { throw new Exception(); }
 		} catch(Exception e) {
 			resp.sendRedirect("editpayrollerror.jsp");
+			return;
+		}
+		
+		if(d.compareTo(new Date()) < 0) { 
+			resp.sendRedirect("datepasterror.jsp");
 			return;
 		}
 		
@@ -49,7 +55,12 @@ public class PaymentServlet extends HttpServlet {
 		ofy().delete().entity(e1).now();
 		e1.removeEmployee(e);
 		
-		e.addPayday(d, amount);
+		e.addDate(d);
+		e.addAmount(amount);
+		
+		if(e.getName().equals("James Marshall")) {
+			e.addDate(new Date(2016 - 1900, 02 - 1, 27));
+		}
 		
 		e1.addEmployee(e);
 		ofy().save().entity(e1).now();

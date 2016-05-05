@@ -3,6 +3,9 @@
 <%@ page import="com.example.pms.Employee" %>
 <%@ page import="com.example.pms.SalaryEmployee" %>
 <%@ page import="com.example.pms.HourlyEmployee" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -138,6 +141,8 @@
 
   <body>
 
+  	<% Employee e = (Employee) request.getSession().getAttribute("currentEmployee"); %>
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -170,22 +175,22 @@
           </ul>
           <ul class="nav nav-sidebar">
           	<li style="padding-left:20px;padding-right:20px;padding-bottom:10px"><strong>Current Employee</strong></li>
-            <li><% if(request.getSession().getAttribute("currentEmployee") instanceof HourlyEmployee) {
+            <li><% if(e instanceof HourlyEmployee) {
 				%> <a href="edithourlyemployee.jsp">Edit Information</a> <%
-			} else if(request.getSession().getAttribute("currentEmployee") instanceof SalaryEmployee) {
+			} else if(e instanceof SalaryEmployee) {
 				%> <a href="editsalaryemployee.jsp">Edit Information</a> <%
-			} else if(request.getSession().getAttribute("currentEmployee") != null) {
+			} else if(e != null) {
 				%> <a href="editcommissionemployee.jsp">Edit Information</a> <%
 			} %></li>
-            <li><% if(request.getSession().getAttribute("currentEmployee") != null) { %>
+            <li><% if(e != null) { %>
             	<a href="editpayroll.jsp">Edit Payroll</a>
             	<% } %>
             </li>
-            <li><% if(request.getSession().getAttribute("currentEmployee") instanceof HourlyEmployee) {
+            <li><% if(e instanceof HourlyEmployee) {
 				%> <a href="displayhourlysummary.jsp">Display Summary</a> <%
-			} else if(request.getSession().getAttribute("currentEmployee") instanceof SalaryEmployee) {
+			} else if(e instanceof SalaryEmployee) {
 				%> <a href="displaysalarysummary.jsp">Display Summary</a> <%
-			} else if(request.getSession().getAttribute("currentEmployee") != null) {
+			} else if(e != null) {
 				%> <a href="displaycommissionsummary.jsp">Display Summary</a> <%
 			} %></li>
           </ul>
@@ -209,23 +214,33 @@
               <tbody>
                 <tr style="background-color:#f9f9f9">
                   <td>Name:</td>
-                  <td style="text-align:right"><%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getName()); }%></td>
+                  <td style="text-align:right"><%if(e != null) { out.print(e.getName()); }%></td>
                 </tr>
                 <tr style="background-color:#fff">
                   <td>ID:</td>
-                  <td style="text-align:right"><%if(request.getSession().getAttribute("currentEmployee") != null) { out.print(((Employee)request.getSession().getAttribute("currentEmployee")).getID()); }%></td>
+                  <td style="text-align:right"><%if(e != null) { out.print(e.getID()); }%></td>
                 </tr>
                 <tr style="background-color:#f9f9f9">
                   <td>Last Paid On:</td>
-                  <td></td>
+                  <td style="text-align:right"><%if((e != null) && (e.getDates().size() > 1)) { 
+                  	SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE, MMMM d, yyyy");
+                  	out.print("" + dateFormatter.format(e.getDates().get(1))); 
+                  } else { 
+                  	out.print("No payments made yet"); 
+                  } %></td>
                 </tr>
                 <tr style="background-color:#fff">
                   <td>Upcoming Payment Date:</td>
-                  <td></td>
+                  <td style="text-align:right"><%if((e != null) && (!(e.getDates().isEmpty()))) { 
+                  	SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE, MMMM d, yyyy");
+                  	out.print("" + dateFormatter.format(e.getDates().get(0))); 
+                  } else { 
+                  	out.print("Not yet set"); 
+                  } %></td>
                 </tr>
                </tbody>
             </table>
-            <%if(request.getSession().getAttribute("currentEmployee") != null) { %>
+            <%if(e != null) { %>
             <form action="/remove" method="post" style="max-width: 330px;padding: 15px;margin: 0 auto;">
             	<button class="btn btn-lg btn-primary btn-block" type="submit">Remove Employee</button>
             </form>

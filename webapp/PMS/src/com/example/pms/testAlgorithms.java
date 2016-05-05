@@ -60,9 +60,9 @@ public class testAlgorithms {
 	
 	@Test
 	public void testHourlyProductivityA() {
-		hourly.setHours(125);
+		hourly.setHours(125*20);
 		hourly.setSickDays(0);
-		hourly.setExpectedHours(100);
+		hourly.setExpectedHours(100*20);
 		
 		contribution = hourly.calcContribution();
 		
@@ -136,9 +136,9 @@ public class testAlgorithms {
 	
 	@Test
 	public void testCommissionProductivityA() {
-		commission.setSales(100);
-		commission.setMaxSales(110);
-		commission.setPreviousYearSales(90);
+		commission.setSales(130*100);
+		commission.setMaxSales(120*100);
+		commission.setPreviousYearSales(100*100);
 		
 		contribution = commission.calcContribution();
 		

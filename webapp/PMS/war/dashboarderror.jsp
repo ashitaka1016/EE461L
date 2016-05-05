@@ -178,7 +178,7 @@
 				%> <a href="editcommissionemployee.jsp">Edit Information</a> <%
 			} %></li>
             <li><% if(request.getSession().getAttribute("currentEmployee") != null) { %>
-            	<a href="">Edit Payroll</a>
+            	<a href="editpayroll.jsp">Edit Payroll</a>
             	<% } %>
             </li>
             <li><% if(request.getSession().getAttribute("currentEmployee") instanceof HourlyEmployee) {

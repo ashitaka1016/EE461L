@@ -39,7 +39,7 @@ public class PaymentServlet extends HttpServlet {
 			if(!("".equals(req.getParameter("date")))) { amount = Double.parseDouble(req.getParameter("amount")); }
 			if(d.compareTo(new Date()) < 0) { throw new Exception(); }
 		} catch(Exception e) {
-			resp.sendRedirect("paymententryerror.jsp");
+			resp.sendRedirect("editpayrollerror.jsp");
 			return;
 		}
 		

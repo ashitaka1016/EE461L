@@ -95,7 +95,7 @@
         <input name="amount" type="text" id="inputEmail" class="form-control" style="margin-bottom:15px" placeholder="Amount (in Dollars)" required autofocus>
 
 	<button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom:15px">Enter</button>
-	<div><font color="red">Invalid Date Entry</font></div>
+	<div><font color="red">Invalid Field Entry</font></div>
       </form>
 
     </div> <!-- /container -->

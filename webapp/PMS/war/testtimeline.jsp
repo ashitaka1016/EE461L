@@ -161,6 +161,7 @@
 <%  Employer e = (Employer) ObjectifyService.ofy().load().type(Employer.class).id((String)request.getSession().getAttribute("employer")).get();
   int size = e.getEmployees().size();
   SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE, MMMM d, yyyy");
+  Date date = new Date();
  %>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -175,7 +176,23 @@
     var id = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %>"<%= e.getEmployees().get(i).getID() %>"<%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
     var name = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %>"<%= e.getEmployees().get(i).getName() %>"<%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
     var startDates = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %>"<%= e.getEmployees().get(i).getStartDate() %>"<%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
-    var dates = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %>"<%= dateFormatter.format(e.getEmployees().get(i).getDates().get(0)) %>"<%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
+    var dates = [<%  
+          for (int i = 0; i < e.getEmployees().size(); i++) { %>
+            int after = -1;
+            Employee e1 = e.getEmployees.get(i);
+            for(int j = e1.getDates.size() - 1; j >= 0; j--){
+              if(date.compareTo(e1.getDates.get(j)) > 0){
+                if(j == (e1.getDates.size() - 1)){ break;}
+                after = j;
+                break;
+              }
+              if(j == 0){ after = 0;}
+            }
+          if(after > -1){  
+            "<%= dateFormatter.format(e.getEmployees().get(i).getDates().get(after)) %>"
+          } else{"<%= " " %>"}
+          <%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>
+    ];
     var length = "<%=size%>";
     var sillyvar = "Upcoming Payment: ";
 

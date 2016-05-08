@@ -206,7 +206,7 @@
             </table>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
             </form>
-            <div><font color="red">Invalid Field Entry</font></div>
+            <div style="padding-top:5px;"><font color="red">Invalid Field Entry</font></div>
           </div>
     </div>
 

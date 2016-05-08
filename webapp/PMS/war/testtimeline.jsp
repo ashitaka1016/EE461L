@@ -207,7 +207,7 @@
         [ id[i], name[i], sillyvar.concat(dates[i]) , new Date(startDates[i]), new Date() ]]);
     }
 
-    chart.draw(dataTable);
+    if(length != 0) { chart.draw(dataTable); }
   }
 </script>
 

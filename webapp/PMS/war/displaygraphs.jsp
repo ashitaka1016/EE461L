@@ -82,7 +82,7 @@
 
         var chart = new google.visualization.BarChart(document.getElementById('example2.1'));
 
-        chart.draw(data, options);
+        if(length != 0) { chart.draw(data, options); }
       }
 
       function drawBasic2() {
@@ -115,7 +115,7 @@
 
         var chart = new google.visualization.BarChart(document.getElementById('example2.2'));
 
-        chart.draw(data, options);
+        if(length != 0) { chart.draw(data, options); }
       }
 
       function drawBasic3() {
@@ -148,7 +148,7 @@
 
         var chart = new google.visualization.BarChart(document.getElementById('example2.3'));
 
-        chart.draw(data, options);
+        if(length != 0) { chart.draw(data, options); }
       }
     </script>
 
@@ -283,6 +283,12 @@
       </div>
     </nav>
 
+  <div class="container" style="padding-top:10px">
+    <header>
+      <p><font color="gray">Note: If you do not see a graph below one or more of the subheadings, you either have no employees of the respective type(s) or you have not set their appropriate fields.</font></p>
+    </header>
+  </div>
+
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h3 class="form-signin-heading">Commission Graphical Comparisons</h3>
     <div id="example2.1"></div>
@@ -298,11 +304,7 @@
     <div id="example2.3"></div>
   </div>
 
-  <div class="container">
-      <footer>
-        <p>Note: If you do not see a graph below one or more of the subheadings, you either have no employees of the respective type(s) or you have not set their appropriate fields.</p>
-      </footer>
-    </div>
+  
 
 </body>
 

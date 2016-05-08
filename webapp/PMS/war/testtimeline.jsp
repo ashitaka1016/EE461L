@@ -181,7 +181,7 @@
             int after = -1;
             Employee e1 = e.getEmployees().get(i);
             for(int j = e1.getDates().size() - 1; j >= 0; j--) {
-              if(date.compareTo(e1.getDates().get(j)) > 0) {
+              if(date.compareTo(e1.getDates().get(j)) >= 0) {
                 if(j == (e1.getDates().size() - 1)){ break; }
                 after = j;
                 break;

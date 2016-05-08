@@ -1,6 +1,7 @@
 package com.example.pms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import com.googlecode.objectify.annotation.Entity;
@@ -23,12 +24,14 @@ public class Employer {
 		employees = new ArrayList<>();
 	}
 	
-	public boolean addEmployee(Employee e) {
-		return employees.add(e);
+	public void addEmployee(Employee e) {
+		employees.add(e);
+		
+		Collections.sort(employees);
 	}
 	
-	public boolean removeEmployee(Employee e) {
-		return employees.remove(e);
+	public void removeEmployee(Employee e) {
+		employees.remove(e);
 	}
 	
 	public String getUsername() {

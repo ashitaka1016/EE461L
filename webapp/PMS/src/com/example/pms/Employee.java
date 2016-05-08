@@ -13,7 +13,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Serialize;
 
 @Entity
-public abstract class Employee implements Serializable {
+public abstract class Employee implements Serializable, Comparable<Employee> {
 	@Id private long ID;
 	private String name;
 	
@@ -139,5 +139,12 @@ public abstract class Employee implements Serializable {
 	public abstract int analyzeProductivity(double cont);
 	
 	public abstract String toString();
+	
+	public int compareTo(Employee e) {
+		if(this.ID < e.getID()) { return -1; }
+		if(this.ID == e.getID()) { return 0; }
+		
+		return 1;
+	}
 
 }

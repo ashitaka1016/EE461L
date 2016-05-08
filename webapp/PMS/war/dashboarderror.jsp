@@ -186,7 +186,7 @@
           <ul class="nav nav-sidebar">
             <li><a href="create.jsp">Create Employee</a></li>
             <li><a href="viewemployee.jsp">View All Employees</a></li>
-            <li style="padding-bottom:20px"><a href="testtimeline.jsp">View Timeline</a></li>
+            <li><a href="testtimeline.jsp">View Timeline</a></li>
             <li style="padding-bottom:20px"><a href="displaygraphs.jsp">Display Graphical Comparisons</a></li>
           </ul>
           <ul class="nav nav-sidebar">

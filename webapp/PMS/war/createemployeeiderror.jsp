@@ -101,7 +101,7 @@
 					<option value="Commission">Commission</option>
 				</select>
 		<button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom:15px">Create</button>
-		<div><p><font color="red">Invalid ID Format (numbers only, please)</font></p></div>
+		<div><p><font color="red">Invalid Field Entry</font></p></div>
       </form>	
     </div> <!-- /container -->
 

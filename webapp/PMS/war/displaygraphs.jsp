@@ -10,6 +10,21 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 
+<%  Employer e = (Employer) ObjectifyService.ofy().load().type(Employer.class).id((String)request.getSession().getAttribute("employer")).get();
+  ArrayList<SalaryEmployee> salary = new ArrayList<SalaryEmployee>();
+  ArrayList<HourlyEmployee> hourly = new ArrayList<HourlyEmployee>();
+  ArrayList<CommissionEmployee> commission = new ArrayList<CommissionEmployee>();
+
+  for(int i = 0; i < e.getEmployees().size(); i += 1) {
+    if(e.getEmployees().get(i) instanceof SalaryEmployee) {
+      salary.add((SalaryEmployee)e.getEmployees().get(i));
+    } else if(e.getEmployees().get(i) instanceof HourlyEmployee) {
+      hourly.add((HourlyEmployee)e.getEmployees().get(i));
+    } else {
+      commission.add((CommissionEmployee)e.getEmployees().get(i));
+    }
+  }
+ %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +45,113 @@
     <!-- Custom styles for this template -->
     <!--link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"-->
     
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+      google.charts.load('current', { packages: ['corechart', 'bar'] });
+      google.charts.setOnLoadCallback(drawBasic);
+      google.charts.setOnLoadCallback(drawBasic2);
+      google.charts.setOnLoadCallback(drawBasic3);
+
+      function drawBasic() {
+        var name = [<% for (int i = 0; i < commission.size(); i++) { %>"<%= commission.get(i).getName() %>"<%= i + 1 < commission.size() ? ",":"" %><% } %>];
+        var sales = [<% for (int i = 0; i < commission.size(); i++) { %><%= commission.get(i).getSales() %><%= i + 1 < commission.size() ? ",":"" %><% } %>];
+        var length = sales.length;
+        var array = [['Name', '']];
+
+        for(i = 0; i < length; i++) {
+          array.push([name[i], sales[i]]);
+        }
+
+        var data = google.visualization.arrayToDataTable(array);
+
+        var options = {
+          title: "",
+          chartArea: {
+            width: '50%'
+          },
+          hAxis: {
+            title: 'Sales (in currency)',
+            minValue: 0
+          },
+          vAxis: {
+            title: 'Name'
+          },
+          legend: { position: "none" }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('example2.1'));
+
+        chart.draw(data, options);
+      }
+
+      function drawBasic2() {
+        var name = [<% for (int i = 0; i < hourly.size(); i++) { %>"<%= hourly.get(i).getName() %>"<%= i + 1 < hourly.size() ? ",":"" %><% } %>];
+        var hours = [<% for (int i = 0; i < hourly.size(); i++) { %><%= hourly.get(i).getHours() %><%= i + 1 < hourly.size() ? ",":"" %><% } %>];
+        var length = hours.length;
+        var array = [['Name', 'Hours', { role: 'style' }]];
+
+        for(i = 0; i < length; i++) {
+          array.push([name[i], hours[i], 'red']);
+        }
+
+        var data = google.visualization.arrayToDataTable(array);
+        
+
+        var options = {
+          title: "",
+          chartArea: {
+            width: '50%'
+          },
+          hAxis: {
+            title: 'Hours Worked',
+            minValue: 0
+          },
+          vAxis: {
+            title: 'Name'
+          },
+          legend: { position: "none" }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('example2.2'));
+
+        chart.draw(data, options);
+      }
+
+      function drawBasic3() {
+        var name = [<% for (int i = 0; i < salary.size(); i++) { %>"<%= salary.get(i).getName() %>"<%= i + 1 < salary.size() ? ",":"" %><% } %>];
+        var salaries = [<% for (int i = 0; i < salary.size(); i++) { %><%= salary.get(i).getSalary() %><%= i + 1 < salary.size() ? ",":"" %><% } %>];
+        var length = salaries.length;
+        var array = [['Name', 'Salary', { role: 'style' }]];
+
+        for(i = 0; i < length; i++) {
+          array.push([name[i], salaries[i], 'green']);
+        }
+
+        var data = google.visualization.arrayToDataTable(array);
+        
+
+        var options = {
+          title: "",
+          chartArea: {
+            width: '50%'
+          },
+          hAxis: {
+            title: 'Salary (in currency)',
+            minValue: 0
+          },
+          vAxis: {
+            title: 'Name'
+          },
+          legend: { position: "none" }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('example2.3'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
     <style>
     /*
    * Base structure
@@ -161,152 +283,26 @@
       </div>
     </nav>
 
-<%  Employer e = (Employer) ObjectifyService.ofy().load().type(Employer.class).id((String)request.getSession().getAttribute("employer")).get();
-  ArrayList<SalaryEmployee> salary = new ArrayList<SalaryEmployee>();
-  ArrayList<HourlyEmployee> hourly = new ArrayList<HourlyEmployee>();
-  ArrayList<CommissionEmployee> commission = new ArrayList<CommissionEmployee>();
-
-  for(int i = 0; i < e.getEmployees().size(); i += 1) {
-    if(e.getEmployees().get(i) instanceof SalaryEmployee) {
-      salary.add((SalaryEmployee)e.getEmployees().get(i));
-    } else if(e.getEmployees().get(i) instanceof HourlyEmployee) {
-      hourly.add((HourlyEmployee)e.getEmployees().get(i));
-    } else {
-      commission.add((CommissionEmployee)e.getEmployees().get(i));
-    }
-  }
- %>
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-<script type="text/javascript">
-  google.charts.load('current', { packages: ['corechart', 'bar'] });
-  google.charts.setOnLoadCallback(drawBasic);
-
-  function drawBasic() {
-    var name = [<% for (int i = 0; i < commission.size(); i++) { %>"<%= commission.get(i).getName() %>"<%= i + 1 < commission.size() ? ",":"" %><% } %>];
-    var sales = [<% for (int i = 0; i < commission.size(); i++) { %><%= commission.get(i).getSales() %><%= i + 1 < commission.size() ? ",":"" %><% } %>];
-    var length = sales.length;
-    var array = [['Name', '']];
-
-    for(i = 0; i < length; i++) {
-      array.push([name[i], sales[i]]);
-    }
-
-    var data = google.visualization.arrayToDataTable(array);
-    
-
-    var options = {
-      title: "",
-      chartArea: {
-        width: '50%'
-      },
-      hAxis: {
-        title: 'Sales (in currency)',
-        minValue: 0
-      },
-      vAxis: {
-        title: 'Name'
-      },
-      legend: { position: "none" }
-    };
-
-    var chart = new google.visualization.BarChart(document.getElementById('example2.1'));
-
-    if(length < 0) { chart.draw(data, options); }
-  }
-</script>
-
-<script type="text/javascript">
-  google.charts.load('current', { packages: ['corechart', 'bar'] });
-  google.charts.setOnLoadCallback(drawBasic);
-
-  function drawBasic() {
-    var name = [<% for (int i = 0; i < hourly.size(); i++) { %>"<%= hourly.get(i).getName() %>"<%= i + 1 < hourly.size() ? ",":"" %><% } %>];
-    var hours = [<% for (int i = 0; i < hourly.size(); i++) { %><%= hourly.get(i).getHours() %><%= i + 1 < hourly.size() ? ",":"" %><% } %>];
-    var length = hours.length;
-    var array = [['Name', 'Hours']];
-
-    for(i = 0; i < length; i++) {
-      array.push([name[i], hours[i]]);
-    }
-
-    var data = google.visualization.arrayToDataTable(array);
-    
-
-    var options = {
-      title: "",
-      chartArea: {
-        width: '50%'
-      },
-      hAxis: {
-        title: 'Hours Worked',
-        minValue: 0
-      },
-      vAxis: {
-        title: 'Name'
-      },
-      legend: { position: "none" }
-    };
-
-    var chart = new google.visualization.BarChart(document.getElementById('example2.2'));
-
-    if(length < 0) { chart.draw(data, options); }
-  }
-</script>
-
-<script type="text/javascript">
-  google.charts.load('current', { packages: ['corechart', 'bar'] });
-  google.charts.setOnLoadCallback(drawBasic);
-
-  function drawBasic() {
-    var name = [<% for (int i = 0; i < salary.size(); i++) { %>"<%= salary.get(i).getName() %>"<%= i + 1 < salary.size() ? ",":"" %><% } %>];
-    var salaries = [<% for (int i = 0; i < salary.size(); i++) { %><%= salary.get(i).getSalary() %><%= i + 1 < salary.size() ? ",":"" %><% } %>];
-    var length = salaries.length;
-    var array = [['Name', 'Salary']];
-
-    for(i = 0; i < length; i++) {
-      array.push([name[i], salaries[i]]);
-    }
-
-    var data = google.visualization.arrayToDataTable(array);
-    
-
-    var options = {
-      title: "",
-      chartArea: {
-        width: '50%'
-      },
-      hAxis: {
-        title: 'Salary (in currency)',
-        minValue: 0
-      },
-      vAxis: {
-        title: 'Name'
-      },
-      legend: { position: "none" }
-    };
-
-    var chart = new google.visualization.BarChart(document.getElementById('example2.3'));
-
-    if(length < 0) { chart.draw(data, options); }
-  }
-</script>
-
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h2 class="form-signin-heading">Commission Graphical Comparisons</h2>
-    <div id="example2.1" style="height: 250px;"></div>
+    <h3 class="form-signin-heading">Commission Graphical Comparisons</h3>
+    <div id="example2.1"></div>
   </div>
 
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h2 class="form-signin-heading">Hourly Graphical Comparisons</h2>
-    <div id="example2.2" style="height: 250px;"></div>
+    <h3 class="form-signin-heading">Hourly Graphical Comparisons</h3>
+    <div id="example2.2"></div>
   </div>
 
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h2 class="form-signin-heading">Salary Graphical Comparisons</h2>
-    <div id="example2.3" style="height: 250px;"></div>
+    <h3 class="form-signin-heading">Salary Graphical Comparisons</h3>
+    <div id="example2.3"></div>
   </div>
+
+  <div class="container">
+      <footer>
+        <p>Note: If you do not see a graph below one or more of the subheadings, you either have no employees of the respective type(s) or you have not set their appropriate fields.</p>
+      </footer>
+    </div>
 
 </body>
 

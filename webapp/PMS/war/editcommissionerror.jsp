@@ -22,7 +22,7 @@
 
     <!-- Custom styles for this template -->
     <!--link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet"-->
-    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"> 
+    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
     
     <style>
     /*
@@ -159,7 +159,7 @@
     <h2 class="form-signin-heading">Edit Commission Employee</h2>
 		  <div class="table-responsive">
 		  	<form action="/editcommission" method="post">
-            <table class="table table-striped" style="width:50%">
+            <table class="table table-striped">
               <tbody>
 				<tr>
 					<td style="width: 432px">Sales (in dollars): </td>

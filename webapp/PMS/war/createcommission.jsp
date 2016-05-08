@@ -90,7 +90,7 @@
       <form class="form-signin" action="/createcommission" method="post">
         <h2 class="form-signin-heading">Commission Employee</h2>
         <label for="inputEmail" class="sr-only">Sales</label>
-        <input name="sales" type="text" id="inputEmail" class="form-control" placeholder="Sales (in Dollars)" required autofocus>
+        <input name="sales" type="text" id="inputEmail" class="form-control" placeholder="Sales (in currency)" required autofocus>
         <label for="inputEmail" class="sr-only">CommissionRate</label>
         <input name="commissionRate" type="text" id="inputEmail" class="form-control" placeholder="Commission Rate (as percent)" required autofocus>
         <label for="inputEmail" class="sr-only">PreviousYearSales</label>

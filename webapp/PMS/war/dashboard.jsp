@@ -188,7 +188,8 @@
           <ul class="nav nav-sidebar">
             <li><a href="create.jsp">Create Employee</a></li>
             <li><a href="viewemployee.jsp">View All Employees</a></li>
-            <li style="padding-bottom:20px"><a href="testtimeline.jsp">View Timeline</a></li>
+            <li><a href="testtimeline.jsp">View Timeline</a></li>
+            <li style="padding-bottom:20px"><a href="displaygraphs.jsp">Display Graphical Comparisons</a></li>
           </ul>
           <ul class="nav nav-sidebar">
           	<li style="padding-left:20px;padding-right:20px;padding-bottom:10px"><strong>Current Employee</strong></li>
@@ -202,6 +203,10 @@
             <li><% if(e != null) { %>
             	<a href="editpayroll.jsp">Edit Payroll</a>
             	<% } %>
+            </li>
+            <li><% if(e != null) { %>
+              <a href="viewpayments.jsp">View All Payments</a>
+              <% } %>
             </li>
             <li><% if(e instanceof HourlyEmployee) {
 				%> <a href="displayhourlysummary.jsp">Display Summary</a> <%

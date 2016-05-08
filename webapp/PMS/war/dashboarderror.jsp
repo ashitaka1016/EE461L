@@ -201,6 +201,10 @@
             	<a href="editpayroll.jsp">Edit Payroll</a>
             	<% } %>
             </li>
+            <li><% if(e != null) { %>
+              <a href="viewpayments.jsp">View All Payments</a>
+              <% } %>
+            </li>
             <li><% if(e instanceof HourlyEmployee) {
 				%> <a href="displayhourlysummary.jsp">Display Summary</a> <%
 			} else if(e instanceof SalaryEmployee) {

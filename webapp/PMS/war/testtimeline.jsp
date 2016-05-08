@@ -177,20 +177,20 @@
     var name = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %>"<%= e.getEmployees().get(i).getName() %>"<%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
     var startDates = [<% for (int i = 0; i < e.getEmployees().size(); i++) { %>"<%= e.getEmployees().get(i).getStartDate() %>"<%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>];
     var dates = [<%  
-          for (int i = 0; i < e.getEmployees().size(); i++) { %>
+          for (int i = 0; i < e.getEmployees().size(); i++) { 
             int after = -1;
-            Employee e1 = e.getEmployees.get(i);
-            for(int j = e1.getDates.size() - 1; j >= 0; j--){
-              if(date.compareTo(e1.getDates.get(j)) > 0){
-                if(j == (e1.getDates.size() - 1)){ break;}
+            Employee e1 = e.getEmployees().get(i);
+            for(int j = e1.getDates().size() - 1; j >= 0; j--) {
+              if(date.compareTo(e1.getDates().get(j)) > 0) {
+                if(j == (e1.getDates().size() - 1)){ break; }
                 after = j;
                 break;
               }
               if(j == 0){ after = 0;}
             }
-          if(after > -1){  
+          if(after > -1){ %>  
             "<%= dateFormatter.format(e.getEmployees().get(i).getDates().get(after)) %>"
-          } else{"<%= " " %>"}
+          <% } else{ %> "" <% } %>
           <%= i + 1 < e.getEmployees().size() ? ",":"" %><% } %>
     ];
     var length = "<%=size%>";

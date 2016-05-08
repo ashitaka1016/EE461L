@@ -4,6 +4,7 @@ package com.example.pms;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -37,14 +38,6 @@ public abstract class Employee implements Serializable {
 
 	public void setSickDays(int sickDays) {
 		this.sickDays = sickDays;
-	}
-
-	public void addDate(Date date) {
-		dates.add(date);
-	}
-	
-	public void addAmount(Double amount) {
-		amounts.add(amount);
 	}
 
 	public void setBonus(double bonus) {
@@ -91,6 +84,24 @@ public abstract class Employee implements Serializable {
 	
 	public ArrayList<Double> getAmounts() {
 		return amounts;
+	}
+	
+	public void addPayment(Date date, Double amount) {
+		int i = dates.size();
+		
+		if((!(dates.isEmpty())) && (date.compareTo(dates.get(dates.size() - 1)) < 0)) {
+			for(i = dates.size() - 1; i >= 0; i -= 1) {
+				if(date.compareTo(dates.get(i)) >= 0) {
+					i += 1;
+					break;
+				}
+			}
+		}
+		
+		if(i == -1) { i = 0; }
+		
+		dates.add(i, date);
+		amounts.add(i, amount);
 	}
 
 	public double getBonus() {

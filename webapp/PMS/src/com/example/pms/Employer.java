@@ -47,11 +47,6 @@ public class Employer {
 		return employees;
 	}
 	
-	public void setPay(Employee e, Date date, Double amount) {
-		e.addDate(date);
-		e.addAmount(amount);
-	}
-	
 	public static int[] parseDate(String d) throws NumberFormatException {
 		@SuppressWarnings("deprecation")
 		int[] date = {Integer.parseInt(d.substring(0, 4)), Integer.parseInt(d.substring(5, 7)), Integer.parseInt(d.substring(8))};

@@ -141,7 +141,24 @@
 
   <body>
 
-  	<% Employee e = (Employee) request.getSession().getAttribute("currentEmployee"); %>
+  	<% Employee e = (Employee) request.getSession().getAttribute("currentEmployee");
+  	   String name = (String) request.getSession().getAttribute("employerName"); 
+  	   Date date = new Date();
+  	   int before = -1;
+  	   int after = -1;
+  	   if((e != null) && (!(e.getDates().isEmpty()))) {
+  	   		for(int i = 0; i < e.getDates().size(); i += 1) {
+  	   			if(date.compareTo(e.getDates().get(i)) <= 0) {
+  	   				before = i - 1;
+  	   				after = i;
+  	   				break;
+  	   			} else if(i == (e.getDates().size() - 1)) {
+  	   				before = e.getDates().size() - 1;
+  	   				break;
+  	   			}
+  	   		}
+  	   }
+  	 %>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -197,7 +214,7 @@
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <% String name = (String) request.getSession().getAttribute("employerName"); 
+        <% 
 		if((name == null) || (name.equals(""))) {
 		%>
           <h1 class="page-header">Welcome Back!</h1>
@@ -222,18 +239,18 @@
                 </tr>
                 <tr style="background-color:#f9f9f9">
                   <td>Last Paid On:</td>
-                  <td style="text-align:right"><%if((e != null) && (e.getDates().size() > 1)) { 
+                  <td style="text-align:right"><%if(before >= 0) { 
                   	SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE, MMMM d, yyyy");
-                  	out.print("" + dateFormatter.format(e.getDates().get(1))); 
+                  	out.print("" + dateFormatter.format(e.getDates().get(before))); 
                   } else { 
                   	out.print("No payments made yet"); 
                   } %></td>
                 </tr>
                 <tr style="background-color:#fff">
                   <td>Upcoming Payment Date:</td>
-                  <td style="text-align:right"><%if((e != null) && (!(e.getDates().isEmpty()))) { 
+                  <td style="text-align:right"><%if(after >= 0) { 
                   	SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE, MMMM d, yyyy");
-                  	out.print("" + dateFormatter.format(e.getDates().get(0))); 
+                  	out.print("" + dateFormatter.format(e.getDates().get(after))); 
                   } else { 
                   	out.print("Not yet set"); 
                   } %></td>

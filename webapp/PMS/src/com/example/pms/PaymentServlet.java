@@ -38,16 +38,15 @@ public class PaymentServlet extends HttpServlet {
 				d = new Date((date[0] - 1900), (date[1] - 1), date[2]);
 			}
 			if(!("".equals(req.getParameter("date")))) { amount = Double.parseDouble(req.getParameter("amount")); }
-			if(d.compareTo(new Date()) < 0) { throw new Exception(); }
 		} catch(Exception e) {
 			resp.sendRedirect("editpayrollerror.jsp");
 			return;
 		}
 		
-		if(d.compareTo(new Date()) < 0) { 
+		/*if(d.compareTo(new Date()) < 0) { 
 			resp.sendRedirect("datepasterror.jsp");
 			return;
-		}
+		}*/
 		
 		Employee e = (Employee) req.getSession().getAttribute("currentEmployee");
 		Employer e1 = ofy().load().type(Employer.class).id((String)req.getSession().getAttribute("employer")).get();
@@ -55,12 +54,7 @@ public class PaymentServlet extends HttpServlet {
 		ofy().delete().entity(e1).now();
 		e1.removeEmployee(e);
 		
-		e.addDate(d);
-		e.addAmount(amount);
-		
-		if(e.getName().equals("James Marshall")) {
-			e.addDate(new Date(2016 - 1900, 02 - 1, 27));
-		}
+		e.addPayment(d, amount);
 		
 		e1.addEmployee(e);
 		ofy().save().entity(e1).now();
